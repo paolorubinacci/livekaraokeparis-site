@@ -191,11 +191,13 @@ nav.top .mctl,nav.top .menu,nav.top .scrim{display:none}
 
 /* ticker */
 .ticker{margin-inline:calc(var(--gut)*-1);border-block:1px solid var(--line);background:var(--deep);overflow:hidden;padding-block:16px}
-.ticker .track{display:flex;gap:40px;width:max-content;animation:scroll 45s linear infinite}
-.ticker span{font-family:var(--head);font-weight:700;font-size:1.3rem;white-space:nowrap;display:flex;align-items:center;gap:10px}
+.ticker .track{display:flex;gap:0;width:max-content;animation:scroll 45s linear infinite;will-change:transform;backface-visibility:hidden;transform:translate3d(0,0,0)}
+.ticker span{font-family:var(--head);font-weight:700;font-size:1.3rem;white-space:nowrap;display:flex;align-items:center;gap:10px;margin-right:40px;flex:none}
 .ticker small{font-family:var(--body);font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--deep);background:var(--violet);border-radius:4px;padding:2px 6px}
 .ticker em{color:var(--lilac);font-style:normal}
-@keyframes scroll{to{transform:translateX(-50%)}}
+@keyframes scroll{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.ticker{contain:layout paint}
+.ticker.off .track{animation-play-state:paused}
 
 /* story */
 .story{display:grid;grid-template-columns:minmax(0,860px);gap:clamp(28px,5vw,64px);align-items:center}
@@ -504,6 +506,21 @@ html.spot-on .rnav{opacity:0;pointer-events:none}
   nav.top.open .menuin{max-height:calc(100vh - 110px)}
 }
 @media (min-width:761px){nav.top .lg-full{height:54px!important}nav.top.scrolled .lg-full,nav.top.open .lg-full{height:46px!important}nav.top.scrolled .navrow,nav.top.open .navrow{padding:5px 12px 5px 26px}}
+
+/* ---- v26: facts always 2x2, text never clipped; more room at the very bottom ---- */
+.facts{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:520px!important;gap:12px!important;justify-content:stretch!important}
+.fact{padding:13px 16px 13px 13px;gap:13px}
+.fact p{min-width:0;flex:1}
+.fact b{white-space:normal;line-height:1.1;font-size:clamp(1.15rem,5.2vw,1.45rem)}
+.fact p>span{white-space:normal;line-height:1.25;font-size:clamp(.7rem,3vw,.8rem)}
+.fact b span{font:inherit;letter-spacing:inherit;color:inherit;white-space:normal}
+@media (min-width:1000px){.facts{max-width:540px!important}.fact b{font-size:1.45rem}}
+@media (max-width:380px){.fact{padding:10px 9px 10px 9px;gap:9px}}
+footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
+.fact.k b{font-size:clamp(1rem,4.3vw,1.3rem)}
+@media (min-width:1000px){.fact.k b{font-size:1.45rem}}
+@media (max-width:700px){.fact{padding:12px 10px 12px 11px;gap:10px}.fact i{width:36px;height:36px}.fact i svg{width:19px;height:19px}.fact.k b{font-size:clamp(.92rem,3.95vw,1.2rem);white-space:nowrap}}
+@media (max-width:340px){.fact.k b{white-space:normal}}
 </style>
 </head>
 <body>
@@ -579,7 +596,7 @@ html.spot-on .rnav{opacity:0;pointer-events:none}
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span></p></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span></p></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span></p></div>
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b>Flexible</b><span lang="fr">duo ou groupe</span><span lang="en">duo to band</span></p></div>
+        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">sur mesure</span><span lang="en">fits your venue</span></p></div>
       </div>
     </div>
     <div class="art"><a class="a1" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
@@ -800,7 +817,7 @@ const DATES = [
   {d:"2026-10-28", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"},
   {d:"2026-11-04", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"}
 ];
-const SONGS = [["Dancing Queen","EN"],["Alors On Danse","FR"],["Billie Jean","EN"],["Despacito","ES"],["Sweet Caroline","EN"],["Nel Blu Dipinto Di Blu (Volare)","IT"],["Let It Be","EN"],["Let It Go","DISNEY"],["I Will Survive","EN"],["Les Champs-Élysées","FR"],["Rolling In The Deep","EN"],["Danza Kuduro","ES"],["Wonderwall","EN"],["Sarà Perché Ti Amo","IT"],["Stand By Me","EN"],["Hakuna Matata","DISNEY"],["Twist And Shout","EN"],["Non, Je Ne Regrette Rien","FR"],["Viva La Vida","EN"],["Waka Waka","ES"],["Hit The Road Jack","EN"],["Bella Ciao","IT"],["Mamma Mia","EN"],["A Whole New World","DISNEY"]];
+const SONGS = [["Dancing Queen","EN"],["Alors On Danse","FR"],["Billie Jean","EN"],["Despacito","ES"],["Sweet Caroline","EN"],["Nel Blu Dipinto Di Blu (Volare)","IT"],["Let It Be","EN"],["Let It Go","DISNEY"],["I Will Survive","EN"],["Les Champs-Élysées","FR"],["Rolling In The Deep","EN"],["Danza Kuduro","ES"],["Wonderwall","EN"],["Sarà Perché Ti Amo","IT"],["Stand By Me","EN"],["Hakuna Matata","DISNEY"],["Twist And Shout","EN"],["Non, Je Ne Regrette Rien","FR"],["Viva La Vida","EN"],["Waka Waka","EN"],["Hit The Road Jack","EN"],["Bella Ciao","IT"],["Mamma Mia","EN"],["A Whole New World","DISNEY"]];
 
 let lang = "fr";
 try{ lang = localStorage.getItem("lkp-lang") || ((navigator.language||"fr").toLowerCase().startsWith("fr") ? "fr" : "en"); }catch(e){ lang = (navigator.language||"fr").toLowerCase().startsWith("fr") ? "fr" : "en"; }
@@ -818,6 +835,8 @@ document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",
 const track = document.getElementById("track");
 const one = SONGS.map(([t,l])=>`<span><em>★</em>${t}<small>${l}</small></span>`).join("");
 track.innerHTML = one + one;
+/* pause the ticker while it is off-screen so it never competes with the videos for the GPU */
+if("IntersectionObserver" in window){ const tk=track.closest(".ticker"); new IntersectionObserver(es=>es.forEach(e=>tk.classList.toggle("off",!e.isIntersecting)),{rootMargin:"80px"}).observe(tk); }
 
 /* dates */
 function renderDates(){
