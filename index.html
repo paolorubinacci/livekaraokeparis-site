@@ -527,6 +527,7 @@ footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
 .journey.sl .draw{stroke-dashoffset:calc(1 - var(--p,0));transition:none}
 .journey.sl .node{transform:scale(calc(.4 + .6*var(--l,0)));opacity:var(--l,0);transition:none}
 .journey.sl .stop p{opacity:var(--l,0);transform:translateX(calc(-10px*(1 - var(--l,0))));transition:none}
+.seg button{text-transform:uppercase;letter-spacing:.12em;font-weight:600;font-size:clamp(.62rem,2.9vw,.76rem)}
 </style>
 </head>
 <body>
@@ -696,7 +697,7 @@ footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
       <p class="lede" style="margin-top:14px"><span lang="fr">On arrive avec <b>le groupe, la liste de chansons et l'animation</b>. Pour un bar, un anniversaire, une fête de diplôme ou tout autre événement : vous n'avez qu'à ouvrir les portes.</span><span lang="en">We bring <b>the band, the song list and the host</b>. For a bar, a birthday, a graduation party or any other event: you just open the doors.</span></p>
       <div class="aud">
         <article>
-          <span class="eyebrow"><span lang="fr">Bars, pubs & restaurants</span><span lang="en">Bars, pubs & restaurants</span></span>
+          <span class="eyebrow"><span lang="fr">Bars, pubs & lieux publics</span><span lang="en">Bars, pubs & public venues</span></span>
           <h3><span lang="fr">Faites chanter votre bar</span><span lang="en">Get your bar singing</span></h3>
           <ul>
             <li lang="fr"><b>Un public jeune et international</b>, à l'image de Paris.</li>
@@ -733,7 +734,7 @@ footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
         <form id="bookForm" novalidate>
           <div class="full">
             <div class="seg" role="group" aria-label="Type">
-              <button type="button" data-t="bar" aria-pressed="true"><span lang="fr">Bar / restaurant</span><span lang="en">Bar / restaurant</span></button>
+              <button type="button" data-t="bar" aria-pressed="true"><span lang="fr">Bar / lieu public</span><span lang="en">Bar / public venue</span></button>
               <button type="button" data-t="private" aria-pressed="false"><span lang="fr">Événement privé</span><span lang="en">Private event</span></button>
             </div>
           </div>
@@ -1004,12 +1005,12 @@ function renderDates(){
   }
   function measure(){
     const r=j.getBoundingClientRect(), vh=innerHeight;
-    target=still?1:cl((vh*.9-r.top)/(r.height*1.1));
+    target=still?1:cl((vh*.9-r.top)/(r.height*1.9));
     if(cur<0){ cur=target; apply(cur); return; }
     if(!raf) raf=requestAnimationFrame(step);
   }
   function step(){
-    raf=0; cur+=(target-cur)*.35;
+    raf=0; cur+=(target-cur)*.22;
     if(Math.abs(target-cur)<.002) cur=target;
     apply(cur);
     if(cur!==target) raf=requestAnimationFrame(step);
