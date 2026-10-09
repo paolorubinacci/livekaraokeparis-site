@@ -532,25 +532,24 @@ footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
 .reel .snd,.reel figure .snd{opacity:1!important;translate:-50% 0!important;z-index:5;visibility:visible!important;transform:translateZ(0)}
 .reel figure:not(.on) .snd{background:var(--lilac)}
 
-/* send button: the letters fold away, an arrow with a trail of stars crosses the button, the word comes back */
-form .btn.sub{position:relative;overflow:hidden;min-height:56px}
-form .btn.sub .lbl{display:inline-flex;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;font-weight:800}
-form .btn.sub .lbl i{display:inline-block;font-style:normal;transition:transform .34s cubic-bezier(.55,0,.35,1),opacity .26s ease,filter .3s ease;transition-delay:calc(var(--i)*38ms)}
-form .btn.sub .arw{position:absolute;left:0;top:50%;width:24px;height:24px;margin:-12px 0 0 -30px;stroke:var(--deep);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;pointer-events:none}
-form .btn.sub .st{position:absolute;left:0;top:50%;font-size:.7rem;line-height:1;color:var(--deep);opacity:0;margin:-6px 0 0 -30px;pointer-events:none}
-form .btn.sub.go .lbl i{transform:translateY(-130%) rotateX(80deg) scale(.4);opacity:0;filter:blur(2px)}
-form .btn.sub.go .arw{animation:lkpArrow 1.15s cubic-bezier(.5,.05,.3,1) .32s both}
-form .btn.sub.go .st{animation:lkpStar 1.15s ease .32s both}
-form .btn.sub.go .s2{animation-delay:.42s;margin-top:-16px}
-form .btn.sub.go .s3{animation-delay:.52s;margin-top:4px}
-form .btn.sub.back .lbl i{transition-delay:calc(var(--i)*38ms)}
-@keyframes lkpArrow{0%{transform:translateX(0);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(calc(var(--bw,300px) + 60px));opacity:0}}
-@keyframes lkpStar{0%{transform:translateX(0) scale(.4) rotate(0);opacity:0}15%{opacity:.9}100%{transform:translateX(calc(var(--bw,300px) + 40px)) scale(1) rotate(200deg);opacity:0}}
+/* send button: an amber wash sweeps across the pill with the arrow riding its edge, then the pill returns to lilac */
+form .btn.sub{position:relative;overflow:hidden;min-height:56px;isolation:isolate;transition:background .5s ease}
+form .btn.sub::before{content:"";position:absolute;inset:0;background:var(--spot);transform:scaleX(0);transform-origin:left;opacity:1;z-index:-1}
+form .btn.sub .lbl{display:inline-flex;letter-spacing:.14em;text-transform:uppercase;font-size:.92rem;font-weight:800;transition:opacity .3s ease,transform .3s ease}
+form .btn.sub .lbl i{display:inline-block;font-style:normal}
+form .btn.sub .arw{position:absolute;left:0;top:50%;width:26px;height:26px;margin:-13px 0 0 -34px;stroke:var(--deep);fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0;pointer-events:none}
+form .btn.sub.go .lbl{opacity:0;transform:translateX(10px)}
+form .btn.sub.go::before{animation:lkpWash .95s cubic-bezier(.65,0,.25,1) .1s both}
+form .btn.sub.go .arw{animation:lkpGo .95s cubic-bezier(.65,0,.25,1) .1s both}
+form .btn.sub.hold::before{transform:scaleX(1)}
+form .btn.sub.back::before{transform:scaleX(1);opacity:0;transition:opacity .5s ease}
+@keyframes lkpWash{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes lkpGo{0%{transform:translateX(0);opacity:0}15%{opacity:1}100%{transform:translateX(calc(var(--bw,300px) + 50px));opacity:1}}
 form .btn.sub:disabled{cursor:default}
 #fmsg{margin:12px 0 0;min-height:1.3em;text-align:center;font-weight:600;font-size:.92rem;color:var(--muted)}
 #fmsg.ok{color:var(--spot)}
 #fmsg.err{color:#ff9d9d}
-@media (prefers-reduced-motion:reduce){form .btn.sub .arw,form .btn.sub .st{display:none}}
+@media (prefers-reduced-motion:reduce){form .btn.sub .arw{display:none}}
 </style>
 </head>
 <body>
@@ -774,7 +773,7 @@ form .btn.sub:disabled{cursor:default}
               <option value="band" data-fr="Groupe complet" data-en="Full band">Groupe complet</option>
             </select></label>
           <label class="full" for="f-msg"><span lang="fr">Message</span><span lang="en">Message</span><textarea id="f-msg" rows="4" placeholder=""></textarea></label>
-          <div class="full"><button class="btn primary sub" type="submit"><span class="lbl" lang="fr">Envoyer</span><span class="lbl" lang="en">Send</span><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg><b class="st s1" aria-hidden="true">★</b><b class="st s2" aria-hidden="true">★</b><b class="st s3" aria-hidden="true">★</b></button>
+          <div class="full"><button class="btn primary sub" type="submit"><span class="lbl" lang="fr">Envoyer</span><span class="lbl" lang="en">Send</span><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
             <p id="fmsg" role="status" aria-live="polite"></p></div>
           <div id="out" hidden>
             <pre id="outText"></pre>
@@ -1092,18 +1091,20 @@ const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
     ].filter(Boolean);
     const text=lines.join("\n");
     const data=new FormData();
+    const put=(k,v)=>{ if(v) data.append(k,v); };
     data.append("_subject","Live Karaoke Paris · "+(type==="bar"?"Bar / lieu public":"Événement privé")+" · "+g("f-name"));
-    data.append("name",g("f-name")); data.append(isMail?"email":"contact",g("f-contact")); if(isMail) data.append("contact",g("f-contact"));
-    data.append("type",type); data.append("venue",g("f-venue")); data.append("date",g("f-date")); data.append("guests",g("f-guests")); data.append("setup",fmtLabel()); data.append("langue",lang); data.append("message",text);
+    put("name",g("f-name")); put(isMail?"email":"phone",g("f-contact"));
+    put("type",type==="bar"?"Bar / public venue":"Private event"); put("venue",g("f-venue")); put("date",g("f-date")); put("guests",g("f-guests")); put("setup",fmtLabel()); put("langue",lang);
+    put("message",g("f-msg"));
     btn.disabled=true; btn.style.setProperty("--bw",btn.offsetWidth+"px");
     const calm=matchMedia("(prefers-reduced-motion: reduce)").matches;
     let done=Promise.resolve();
-    if(!calm){ void btn.offsetWidth; btn.classList.add("go"); done=new Promise(r=>setTimeout(r,1600)); }
+    if(!calm){ void btn.offsetWidth; btn.classList.add("go"); done=new Promise(r=>setTimeout(r,1250)); }
     let ok=false;
     try{ const r=await fetch(FORM_ENDPOINT,{method:"POST",headers:{Accept:"application/json"},body:data}); ok=r.ok; }catch(_){}
     await done;
     btn.classList.add("back"); btn.classList.remove("go");
-    setTimeout(()=>{ btn.classList.remove("back"); btn.disabled=false; },calm?0:500);
+    setTimeout(()=>{ btn.classList.remove("back"); btn.disabled=false; },calm?0:600);
     const out=document.getElementById("out");
     if(ok){ form.reset(); type="bar"; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.t==="bar")); document.getElementById("venueFr").textContent="Nom du bar"; document.getElementById("venueEn").textContent="Venue name"; out.hidden=true; msg.className="ok"; msg.textContent=T("Message envoyé ✓ On vous répond très vite.","Message sent ✓ We'll get back to you very soon."); }
     else{ msg.className="err"; msg.textContent=T("L'envoi n'a pas abouti. Copiez le message ci-dessous et envoyez-le-nous.","Sending failed. Copy the message below and send it to us."); document.getElementById("outText").textContent=text; document.getElementById("outNote").textContent=""; document.getElementById("outNote").hidden=true; if(CONTACT_EMAIL){ const ml=document.getElementById("mailLink"); ml.href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Live Karaoke Paris")+"&body="+encodeURIComponent(text); ml.hidden=false; } out.hidden=false; }
