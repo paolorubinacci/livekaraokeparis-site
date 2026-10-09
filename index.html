@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Live Karaoke Paris : le karaoké avec un vrai groupe live. Le site fait peau neuve.">
+<meta name="theme-color" content="#141a33">
+<link rel="icon" href="logo.png">
+<title>Live Karaoke Paris</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;600;700&family=Montserrat:wght@500;700&display=swap">
+<style>
+/* Layout: one full-screen stage. Blurred loop of real nights behind, logo, one line of news, motto, contact. Dark by choice, matching the song list and band app. */
+:root{
+  --night:#141a33;
+  --deep:#0e1328;
+  --ink:#f3f0fb;
+  --muted:#d4d0ec;
+  --lilac:#c4b5fd;
+  --violet:#a78bfa;
+  --head:"Josefin Sans","Century Gothic","Futura",system-ui,sans-serif;
+  --body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{background:var(--night)}
+html[data-lang="fr"] [lang="en"],html[data-lang="en"] [lang="fr"]{display:none!important}
+body{margin:0;background:var(--night);color:var(--ink);font-family:var(--body);overflow-x:hidden}
+.stage{position:relative;min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;isolation:isolate;overflow:hidden;
+  padding:calc(76px + env(safe-area-inset-top,0px)) 20px calc(56px + env(safe-area-inset-bottom,0px))}
+.poster,.stage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;transform:scale(1.06)}
+.poster{background:var(--night) center/cover no-repeat}
+.stage video{filter:blur(2px) saturate(1.1);opacity:0;transition:opacity 1.2s ease}
+.stage video.on{opacity:1}
+/* readable logo + motto: darker centre band, lighter edges so the crowd still shows */
+.stage::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:radial-gradient(ellipse 80% 62% at 50% 50%,rgba(14,19,40,.78),rgba(14,19,40,.42) 70%,rgba(14,19,40,.3)),
+             linear-gradient(180deg,rgba(14,19,40,.55) 0%,transparent 28%,transparent 62%,var(--night) 100%)}
+.stage::after{content:"";position:absolute;inset:0;z-index:-1;mix-blend-mode:screen;pointer-events:none;
+  background:radial-gradient(circle at 25% 28%,rgba(196,181,253,.22),transparent 45%),radial-gradient(circle at 78% 72%,rgba(167,139,250,.18),transparent 45%);
+  animation:drift 16s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(3%,-3%) scale(1.06)}}
+
+.lang{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:16px;display:flex;gap:4px}
+.lang button{background:rgba(14,19,40,.5);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1.5px solid rgba(243,240,251,.22);border-radius:999px;color:var(--muted);font:700 12px var(--body);padding:6px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{border-color:var(--lilac);color:var(--ink)}
+
+.inner{display:flex;flex-direction:column;align-items:center;gap:clamp(20px,3vw,32px);width:100%;max-width:700px;min-width:0}
+.logo{width:min(540px,80vw);max-width:100%;height:auto;filter:drop-shadow(0 6px 36px rgba(167,139,250,.5))}
+h1{margin:0;font-family:var(--head);font-weight:300;font-size:clamp(1.7rem,5.4vw,3rem);line-height:1.12;letter-spacing:.01em;text-wrap:balance}
+h1 b{font-weight:700;color:var(--lilac)}
+.motto{margin:0;font-family:var(--head);font-weight:600;font-size:clamp(1.1rem,2.6vw,1.45rem);line-height:1.4;color:var(--ink);text-wrap:balance;max-width:30ch;text-shadow:0 2px 18px rgba(14,19,40,.8)}
+.when{margin:0;font-size:.95rem;line-height:1.5;color:var(--muted);max-width:40ch;text-wrap:balance}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.btn{display:inline-flex;align-items:center;border-radius:999px;padding:13px 24px;font:700 1rem var(--body);text-decoration:none;border:0;cursor:pointer}
+.btn.primary{background:var(--lilac);color:var(--deep)}
+.btn.primary:hover{background:var(--ink)}
+.btn.ghost{background:rgba(14,19,40,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--ink);box-shadow:inset 0 0 0 1.5px rgba(243,240,251,.3)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--lilac)}
+.mail{margin:0;font-size:.9rem;color:var(--muted);user-select:all;word-break:break-all}
+:focus-visible{outline:2px solid var(--lilac);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.stage video{display:none}.stage::after{animation:none}}
+</style>
+</head>
+<body>
+<main class="stage">
+  <div class="poster" id="poster" aria-hidden="true"></div>
+  <video id="bg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+
+  <div class="lang" role="group" aria-label="Langue / Language">
+    <button type="button" data-l="fr">FR</button>
+    <button type="button" data-l="en">EN</button>
+  </div>
+
+  <div class="inner">
+    <img class="logo" src="logo.png" alt="Live Karaoke Paris" width="720" height="280">
+    <h1>
+      <span lang="fr">Le site fait <b>peau neuve.</b></span>
+      <span lang="en">A <b>new look</b> is on its way.</span>
+    </h1>
+    <p class="motto">
+      <span lang="fr">Le karaoké avec un vrai groupe live. Toi au micro, Paris au refrain.</span>
+      <span lang="en">Karaoke with a real live band. You on the mic, Paris on the chorus.</span>
+    </p>
+    <p class="when">
+      <span lang="fr">On refait le site à l'image de nos soirées. En attendant, rendez-vous chaque mercredi au Roadhouse, à Saint-Michel.</span>
+      <span lang="en">We're rebuilding the site to match our nights. Until then, join us every Wednesday at the Roadhouse in Saint-Michel.</span>
+    </p>
+    <div class="ctas">
+      <a class="btn primary" href="mailto:paolorubinacci.music@gmail.com?subject=Live%20Karaoke%20Paris">
+        <span lang="fr">Nous écrire</span><span lang="en">Email us</span>
+      </a>
+      <a class="btn ghost" href="https://wa.me/33749153234" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="mail">paolorubinacci.music@gmail.com</p>
+  </div>
+</main>
+
+<script>
+(function(){
+  var l = "";
+  try{ l = localStorage.getItem("lkp-lang") || ""; }catch(e){}
+  if(l !== "fr" && l !== "en"){ l = /^fr/i.test(navigator.language || "") ? "fr" : "en"; }
+  function set(x){
+    document.documentElement.dataset.lang = x;
+    document.documentElement.lang = x;
+    document.querySelectorAll(".lang button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.l === x)); });
+    try{ localStorage.setItem("lkp-lang", x); }catch(e){}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){ b.addEventListener("click", function(){ set(b.dataset.l); }); });
+  set(l);
+
+  /* portrait loop on phones, landscape loop on wide screens */
+  var v = document.getElementById("bg"), p = document.getElementById("poster");
+  var narrow = window.matchMedia("(max-width: 820px), (orientation: portrait)").matches;
+  var kind = narrow ? "mobile" : "desktop";
+  p.style.backgroundImage = "url(bg-" + kind + ".jpg)";
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    v.poster = "bg-" + kind + ".jpg";
+    v.addEventListener("playing", function(){ v.classList.add("on"); });
+    v.src = "bg-" + kind + ".mp4";
+    var pr = v.play(); if(pr && pr.catch){ pr.catch(function(){}); }
+  }
+})();
+</script>
+</body>
+</html>
