@@ -477,6 +477,33 @@ html.spot-on .rnav{opacity:0;pointer-events:none}
 @media (min-width:761px){:root{--gut:32px}}
 @media (min-width:1000px){:root{--gut:clamp(48px,6.5vw,110px)}}
 @media (min-width:1000px){.dates li{padding-inline:clamp(14px,2.4vw,36px)}}
+
+/* ---- v24 ---- */
+.fact b{font-size:clamp(1.15rem,5.2vw,1.4rem)}
+@media (max-width:380px){.fact{gap:9px;padding:10px 10px 10px 9px}.fact i{width:34px;height:34px}.fact i svg{width:18px;height:18px}.fact span{font-size:.7rem;letter-spacing:.02em}}
+@media (min-width:1000px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero .art{max-width:620px;aspect-ratio:1/1.1}
+  .hero .art a{width:46%}
+  .hero .art .a1{left:0;top:19%}
+  .hero .art .a2{left:27%;top:0}
+  .hero .art .a3{right:0;top:27%}
+}
+/* desktop nav: the bar becomes a wide glass pill, everything keeps its place */
+@media (min-width:761px){
+  nav.top .navrow{max-width:calc(1200px + var(--gut)*2);margin-inline:auto;padding:20px var(--gut)}
+  nav.top .lg-full{display:block!important;height:44px;transition:height .5s var(--ease)}
+  nav.top .lg-mark{display:none!important}
+  nav.top.scrolled .lg-full,nav.top.open .lg-full{height:36px}
+  nav.top:not(.scrolled):not(.open) .navrow{padding:20px var(--gut)}
+  nav.top.scrolled .navpill,nav.top.open .navpill{width:calc(100% - var(--gut)*2 + 56px);max-width:1256px;margin-top:12px;border-radius:40px}
+  nav.top.scrolled .navrow,nav.top.open .navrow{padding:8px 12px 8px 28px;max-width:none}
+  nav.top.scrolled .mlang,nav.top.open .mlang{opacity:1;pointer-events:auto;max-width:120px;margin-right:4px;transform:none;overflow:visible}
+  nav.top .menu{position:absolute;top:calc(100% + 12px);right:0;width:min(440px,100%);border-radius:30px;background:rgba(14,19,40,.94);box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 24px 60px -16px rgba(0,0,0,.75);overflow:hidden}
+  nav.top .menuin{padding:0 26px}
+  nav.top.open .menuin{max-height:calc(100vh - 110px)}
+}
+@media (min-width:761px){nav.top .lg-full{height:54px!important}nav.top.scrolled .lg-full,nav.top.open .lg-full{height:46px!important}nav.top.scrolled .navrow,nav.top.open .navrow{padding:5px 12px 5px 26px}}
 </style>
 </head>
 <body>
@@ -510,19 +537,19 @@ html.spot-on .rnav{opacity:0;pointer-events:none}
           <a href="#dates">Dates</a>
           <a href="#musiciens">Work with us</a>
         </div>
-        <a class="btn primary small cta" href="#booker">Book us</a>
+        <a class="btn primary small cta" href="#booker">Book</a>
         <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
       </div>
       <div class="mctl">
         <div class="lang mlang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
-        <a class="btn primary small cta" href="#booker">Book us</a>
+        <a class="btn primary small cta" href="#booker">Book</a>
         <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
       </div>
     </div>
     <div class="menu" id="menu">
       <div class="menuin">
         <ul>
-          <li style="--i:0"><a class="ml hot" href="#booker"><small>01</small><span>Book us</span><em>→</em></a></li>
+          <li style="--i:0"><a class="ml hot" href="#booker"><small>01</small><span>Book</span><em>→</em></a></li>
           <li style="--i:1"><a class="ml" href="#histoire"><small>02</small><span><span lang="fr">Notre histoire</span><span lang="en">Our story</span></span><em>→</em></a></li>
           <li style="--i:2"><a class="ml" href="#format"><small>03</small><span><span lang="fr">Le concept</span><span lang="en">How it works</span></span><em>→</em></a></li>
           <li style="--i:3"><a class="ml" href="#ambiance"><small>04</small><span><span lang="fr">L'ambiance</span><span lang="en">The vibe</span></span><em>→</em></a></li>
@@ -545,14 +572,14 @@ html.spot-on .rnav{opacity:0;pointer-events:none}
       <h1><span lang="fr">Prends le micro. Le groupe te suit, en <span class="script">live!</span></span><span lang="en">Grab the mic. The band plays it <span class="script">live!</span></span></h1>
       <p class="lede"><span lang="fr">Pas de vidéo YouTube, pas de bande-son : <b>un vrai groupe sur scène</b> qui joue ta chanson pendant que tu chantes, et <b>toute la salle</b> qui reprend le refrain avec toi.</span><span lang="en">No YouTube backing track. <b>A real band on stage</b> plays your song while you sing it, and <b>the whole room</b> joins in on the chorus.</span></p>
       <div class="ctas">
-        <a class="cta-big" href="#booker"><span class="lbl">Book us</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+        <a class="cta-big" href="#booker"><span class="lbl">Book</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
         <span class="cta-sub"><span lang="fr">Bars · Soirées étudiantes · Événements privés &amp; corporate</span><span lang="en">Bars · Student parties · Private &amp; corporate events</span></span>
       </div>
       <div class="facts">
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span></p></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span></p></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span></p></div>
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b>Agile</b><span lang="fr">sur mesure</span><span lang="en">tailor-made</span></p></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b>Flexible</b><span lang="fr">duo ou groupe</span><span lang="en">duo to band</span></p></div>
       </div>
     </div>
     <div class="art"><a class="a1" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
@@ -734,7 +761,7 @@ html.spot-on .rnav{opacity:0;pointer-events:none}
       <a href="#musiciens">Work with us</a>
       <a href="https://karaoke.paolorubinacci.com" target="_blank" rel="noopener"><span lang="fr">Liste des chansons</span><span lang="en">Song list</span></a>
     </nav>
-    <a class="btn primary small fbook" href="#booker">Book us</a>
+    <a class="btn primary small fbook" href="#booker">Book</a>
     <p class="fcopy">© 2026 Live Karaoke Paris</p>
   </footer>
 <div class="spotscrim" id="spotscrim" aria-hidden="true"></div>
@@ -822,11 +849,12 @@ function renderDates(){
     rail.append(track); rail.classList.add("x");
   }
   const figs=[...rail.querySelectorAll("figure")], vids=figs.map(f=>f.querySelector("video"));
+  let gliding=false, curSpot=null;
   let label=()=>figs.forEach(f=>{ const on=!f.querySelector("video").muted; f.classList.toggle("on",on); const bt=f.querySelector(".snd"); bt.setAttribute("aria-pressed",on); bt.querySelector(".x").style.display=on?"none":""; bt.querySelector(".w").style.display=on?"":"none"; bt.querySelector(".t").innerHTML=on?(lang==="fr"?"Son activé":"Sound on"):(lang==="fr"?"Activer le son":"Tap for sound"); });
   const _lab=label; label=()=>{ _lab(); document.documentElement.classList.toggle("spot-on", figs.some(f=>f.classList.contains("on"))); }; window.__reelLabel=label; label();
   if("IntersectionObserver" in window){
     const vis=new WeakSet(), go=v=>giveSrc(v).then(()=>{ if(vis.has(v)) v.play().catch(e=>dbg("play "+e.name)); });
-    const io=new IntersectionObserver(es=>es.forEach(e=>{ const v=e.target; if(e.isIntersecting && !still){ vis.add(v); go(v); } else { vis.delete(v); v.pause(); if(!v.muted){ v.muted=true; label(); } } }),{threshold:.35});
+    const io=new IntersectionObserver(es=>es.forEach(e=>{ const v=e.target; if(e.isIntersecting && !still){ vis.add(v); go(v); } else { vis.delete(v); v.pause(); if(!v.muted && !gliding){ v.muted=true; label(); } } }),{threshold:.35});
     vids.forEach(v=>{ hookVideo(v); io.observe(v); });
   }
   if("IntersectionObserver" in window){  /* clips about to slide in start buffering a little early, so they play without a stall */
@@ -841,9 +869,11 @@ function renderDates(){
     vids.forEach(x=>x.muted=true);
     if(on){ v.muted=false; v.currentTime=0; v.play().catch(e=>dbg("play "+e.name)); }
     label();
+    curSpot=on?figs[i]:null;
     if(on && spotFn) spotFn(figs[i]);
   }
-  rail.addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f||e.defaultPrevented) return; spot(figs.indexOf(f)); });
+  rail.addEventListener("click",e=>{ if(e.defaultPrevented) return; const f=e.target.closest("figure"); if(!f){ if(vids.some(v=>!v.muted)){ vids.forEach(x=>x.muted=true); label(); } return; } spot(figs.indexOf(f)); });
+  const wrapEl=rail.closest(".reelwrap"); if(wrapEl) wrapEl.addEventListener("click",e=>{ if(e.target===wrapEl && vids.some(v=>!v.muted)){ vids.forEach(x=>x.muted=true); label(); } });
   const scrim=document.getElementById("spotscrim");
   if(scrim) scrim.addEventListener("click",()=>{ vids.forEach(x=>x.muted=true); label(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape" && vids.some(v=>!v.muted)){ vids.forEach(x=>x.muted=true); label(); } });
@@ -901,10 +931,21 @@ function renderDates(){
   }
   spotFn=function(f){
     const r=rail.getBoundingClientRect(), fr=f.getBoundingClientRect();
-    const dx=(fr.left+fr.width/2)-(r.left+r.width/2);
-    touchPause(); tweening=true;
+    const dx=(fr.left+fr.width/2)-(r.left+r.width/2), i0=figs.indexOf(f)%n;
+    touchPause(); tweening=true; gliding=true;
     const start=getT(), delta=dx/W*D, t0=performance.now(), dur=650;
-    (function g(now){ const k=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-k,3); setT(start+delta*e); if(k<1) requestAnimationFrame(g); else tweening=false; })(t0);
+    (function g(now){ const k=Math.min(1,(now-t0)/dur), e=1-Math.pow(1-k,3); setT(start+delta*e);
+      if(k<1){ requestAnimationFrame(g); return; }
+      tweening=false;
+      /* the loop may have wrapped during the glide: hand the spotlight to the identical copy now sitting in the middle */
+      const rc=rail.getBoundingClientRect(), cx=rc.left+rc.width/2; let best=null, bd=1e9;
+      figs.forEach((q,j)=>{ if(j%n!==i0) return; const b=q.getBoundingClientRect(), d=Math.abs(b.left+b.width/2-cx); if(d<bd){ bd=d; best=q; } });
+      const old=curSpot;
+      if(best && old && best!==old && !old.querySelector("video").muted){
+        const vo=old.querySelector("video"), vn=best.querySelector("video"), tt=vo.currentTime;
+        giveSrc(vn).then(()=>{ const seek=()=>{ try{ vn.currentTime=tt; }catch(_){} }; if(vn.readyState>=1) seek(); else vn.addEventListener("loadedmetadata",seek,{once:true}); vo.muted=true; vn.muted=false; vn.play().catch(e=>dbg("play "+e.name)); curSpot=best; label(); gliding=false; });
+      } else gliding=false;
+    })(t0);
   };
   document.querySelector(".rnav.prev").addEventListener("click",()=>nudge(-1));
   document.querySelector(".rnav.next").addEventListener("click",()=>nudge(1));
