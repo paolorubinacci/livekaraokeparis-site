@@ -528,6 +528,9 @@ footer{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))!important}
 .journey.sl .node{transform:scale(calc(.4 + .6*var(--l,0)));opacity:var(--l,0);transition:none}
 .journey.sl .stop p{opacity:var(--l,0);transform:translateX(calc(-10px*(1 - var(--l,0))));transition:none}
 .seg button{text-transform:uppercase;letter-spacing:.12em;font-weight:600;font-size:clamp(.62rem,2.9vw,.76rem)}
+/* sound button: always visible, on every device and state */
+.reel .snd,.reel figure .snd{opacity:1!important;translate:-50% 0!important;z-index:5;visibility:visible!important;transform:translateZ(0)}
+.reel figure:not(.on) .snd{background:var(--lilac)}
 </style>
 </head>
 <body>
