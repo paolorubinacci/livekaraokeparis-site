@@ -625,7 +625,7 @@ form .btn.sub:disabled{cursor:default}
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span></p></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span></p></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span></p></div>
-        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">sur mesure</span><span lang="en">fits your venue</span></p></div>
+        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span></p></div>
       </div>
     </div>
     <div class="art"><a class="a1" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
@@ -1020,7 +1020,7 @@ function renderDates(){
   const stops=[...j.querySelectorAll(".stop")], cl=x=>Math.max(0,Math.min(1,x));
   const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
   j.classList.add("sl");
-  let cur=-1, target=0, raf=0;
+  let cur=-1, target=0, raf=0, lastY=scrollY;
   function apply(v){
     j.style.setProperty("--p",v.toFixed(4));
     const L=[cl(v/.12),cl((v-.4)/.15),cl((v-.85)/.15)];
@@ -1028,7 +1028,9 @@ function renderDates(){
   }
   function measure(){
     const r=j.getBoundingClientRect(), vh=innerHeight;
-    target=still?1:cl((vh*.9-r.top)/(r.height*1.9));
+    /* going down it draws a bit sooner; going up it holds on to what is drawn, so there is time to read and scroll back without the route (and the "Your event" button) vanishing */
+    const y=scrollY, up=y<lastY-1; if(Math.abs(y-lastY)>1) lastY=y;
+    target=still?1:cl(((vh*(up?1.5:.95))-r.top)/(r.height*(up?1.8:1.45)));
     if(cur<0){ cur=target; apply(cur); return; }
     if(!raf) raf=requestAnimationFrame(step);
   }
