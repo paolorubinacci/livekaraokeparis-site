@@ -570,14 +570,14 @@ form .btn.sub:disabled{cursor:default}
 .fact .more{display:none}
 @media (min-width:1000px){
   .hero .yt{display:none}
-  .hero .art{grid-row:1 / 6!important;margin-top:2px!important;margin-bottom:0;z-index:3!important}
+  .hero .art{grid-row:1 / 6!important;margin-top:-52px!important;margin-bottom:0;z-index:3!important}
   .hero .copy>.facts{z-index:1!important}
   .hero .copy>h1{z-index:4}
   .hero .art{pointer-events:none}
   .hero .art a{pointer-events:auto}
 }
 /* desktop hover: the circle around the icon grows to fill the card, the figure gives way to a short description */
-@media (min-width:1000px) and (hover:hover){
+@media (min-width:1000px) and (any-hover:hover){
   .hero .fact{position:relative;overflow:hidden;transition:border-color .35s ease}
   .hero .fact>i,.hero .fact>p{position:relative;z-index:2}
   .hero .fact>p{transition:opacity .22s ease,transform .35s ease}
@@ -728,12 +728,12 @@ form .btn.sub:disabled{cursor:default}
     <h2><span lang="fr">Une soirée Live Karaoke, en vrai</span><span lang="en">A Live Karaoke night, for real</span></h2>
     <div class="reelwrap">
       <div class="reel" id="reel" tabindex="0" aria-label="Vidéos / Videos">
-      <figure><video src="clip1.mp4" poster="clip1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip2.mp4" poster="clip2.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip3.mp4" poster="clip3.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip4.mp4" poster="clip4.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip5.mp4" poster="clip5.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip6.mp4" poster="clip6.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip1-s.mp4" data-quiet="clip1-s.mp4" data-loud="clip1.mp4" poster="clip1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip2-s.mp4" data-quiet="clip2-s.mp4" data-loud="clip2.mp4" poster="clip2.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip3-s.mp4" data-quiet="clip3-s.mp4" data-loud="clip3.mp4" poster="clip3.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip4-s.mp4" data-quiet="clip4-s.mp4" data-loud="clip4.mp4" poster="clip4.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip5-s.mp4" data-quiet="clip5-s.mp4" data-loud="clip5.mp4" poster="clip5.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip6-s.mp4" data-quiet="clip6-s.mp4" data-loud="clip6.mp4" poster="clip6.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
       </div>
       <button class="rnav prev" type="button" aria-label="Précédent / Previous">‹</button>
       <button class="rnav next" type="button" aria-label="Suivant / Next">›</button>
@@ -939,7 +939,9 @@ function renderDates(){
   }
   const figs=[...rail.querySelectorAll("figure")], vids=figs.map(f=>f.querySelector("video"));
   let gliding=false, curSpot=null;
-  let label=()=>figs.forEach(f=>{ const on=!f.querySelector("video").muted; f.classList.toggle("on",on); const bt=f.querySelector(".snd"); bt.setAttribute("aria-pressed",on); bt.querySelector(".x").style.display=on?"none":""; bt.querySelector(".w").style.display=on?"":"none"; bt.querySelector(".t").innerHTML=on?(lang==="fr"?"Son activé":"Sound on"):(lang==="fr"?"Activer le son":"Tap for sound"); });
+  const useLoud=v=>{ if(HOSTED||!v.dataset.loud||v.dataset.cur==="loud") return; v.dataset.cur="loud"; v.setAttribute("src",v.dataset.loud); };
+  const useQuiet=v=>{ if(HOSTED||!v.dataset.quiet||v.dataset.cur!=="loud") return; const was=!v.paused; v.dataset.cur="quiet"; v.setAttribute("src",v.dataset.quiet); if(was) v.play().catch(()=>{}); };
+  let label=()=>figs.forEach(f=>{ const v0=f.querySelector("video"); if(v0.muted) useQuiet(v0); const on=!f.querySelector("video").muted; f.classList.toggle("on",on); const bt=f.querySelector(".snd"); bt.setAttribute("aria-pressed",on); bt.querySelector(".x").style.display=on?"none":""; bt.querySelector(".w").style.display=on?"":"none"; bt.querySelector(".t").innerHTML=on?(lang==="fr"?"Son activé":"Sound on"):(lang==="fr"?"Activer le son":"Tap for sound"); });
   const _lab=label; label=()=>{ _lab(); document.documentElement.classList.toggle("spot-on", figs.some(f=>f.classList.contains("on"))); }; window.__reelLabel=label; label();
   if("IntersectionObserver" in window){
     const vis=new WeakSet(); let st=0;
@@ -958,7 +960,7 @@ function renderDates(){
   function spot(i){
     const v=vids[i], on=v.muted;
     vids.forEach(x=>x.muted=true);
-    if(on){ v.muted=false; v.currentTime=0; v.play().catch(e=>dbg("play "+e.name)); }
+    if(on){ useLoud(v); v.muted=false; v.currentTime=0; v.play().catch(e=>dbg("play "+e.name)); }
     label();
     curSpot=on?figs[i]:null;
     if(on && spotFn) spotFn(figs[i]);
@@ -1034,7 +1036,7 @@ function renderDates(){
       const old=curSpot;
       if(best && old && best!==old && !old.querySelector("video").muted){
         const vo=old.querySelector("video"), vn=best.querySelector("video"), tt=vo.currentTime;
-        giveSrc(vn).then(()=>{ const seek=()=>{ try{ vn.currentTime=tt; }catch(_){} }; if(vn.readyState>=1) seek(); else vn.addEventListener("loadedmetadata",seek,{once:true}); vo.muted=true; vn.muted=false; vn.play().catch(e=>dbg("play "+e.name)); curSpot=best; label(); gliding=false; });
+        giveSrc(vn).then(()=>{ useLoud(vn); const seek=()=>{ try{ vn.currentTime=tt; }catch(_){} }; if(vn.readyState>=1) seek(); else vn.addEventListener("loadedmetadata",seek,{once:true}); vo.muted=true; vn.muted=false; vn.play().catch(e=>dbg("play "+e.name)); curSpot=best; label(); gliding=false; });
       } else gliding=false;
     })(t0);
   };
