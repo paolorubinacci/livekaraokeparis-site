@@ -570,9 +570,10 @@ form .btn.sub:disabled{cursor:default}
 .fact .more{display:none}
 @media (min-width:1000px){
   .hero .yt{display:none}
-  .hero .art{grid-row:1 / 6!important;margin-top:-26px!important;margin-bottom:0;z-index:3!important}
+  .hero .art{grid-row:1 / 6!important;margin-top:-40px!important;margin-bottom:0;z-index:3!important}
   .hero .copy>.facts{z-index:1!important}
   .hero .copy>h1{z-index:4}
+  .hero .art .a2{top:6%}
   .hero .art{pointer-events:none}
   .hero .art a{pointer-events:auto}
 }
@@ -581,14 +582,15 @@ form .btn.sub:disabled{cursor:default}
   .hero .fact{position:relative;overflow:hidden;transition:border-color .35s ease}
   .hero .fact>i,.hero .fact>p{position:relative;z-index:2}
   .hero .fact>p{transition:opacity .22s ease,transform .35s ease}
-  .hero .fact .more{display:flex;align-items:center;position:absolute;inset:0;z-index:1;padding:0 16px 0 66px;background:rgba(255,191,115,.17);opacity:0;clip-path:circle(20px at 34px 50%);transition:clip-path .55s cubic-bezier(.65,0,.2,1),opacity .15s ease .0s;pointer-events:none}
+  .hero .fact .more{display:flex;align-items:center;position:absolute;inset:0;z-index:1;padding:0 16px 0 66px;background:rgba(255,191,115,.12);opacity:0;clip-path:circle(20px at 34px 50%);transition:clip-path .55s cubic-bezier(.65,0,.2,1),opacity 0s .55s;pointer-events:none}
   .hero .fact .more span{white-space:normal;font-size:.84rem;font-weight:600;line-height:1.3;letter-spacing:.01em;color:var(--ink);opacity:0;transform:translateX(-8px);transition:opacity .3s ease,transform .45s ease}
   .hero .copy>.facts:hover{z-index:5!important}
   .hero .fact:hover{border-color:rgba(255,191,115,.55)}
-  .hero .fact:hover .more{opacity:1;clip-path:circle(330px at 34px 50%)}
+  .hero .fact:hover .more{opacity:1;clip-path:circle(330px at 34px 50%);transition:clip-path .55s cubic-bezier(.65,0,.2,1),opacity 0s}
   .hero .fact:hover .more span{opacity:1;transform:none;transition-delay:.22s}
   .hero .fact:hover>p{opacity:0;transform:translateX(10px)}
-  .hero .fact:hover>i{background:rgba(255,191,115,.28)}
+  .hero .fact>i{transition:background 0s .55s}
+  .hero .fact:hover>i{background:transparent;transition:none}
 }
 </style>
 </head>
@@ -871,7 +873,7 @@ function videoUrl(url){
 function giveSrc(v){ if(v.getAttribute("src")) return Promise.resolve(); const u=v.dataset.src; if(!u) return Promise.resolve(); return videoUrl(u).then(b=>{ v.setAttribute("src",b); }); }
 function hookVideo(v){ if(!DBG||v._hk) return; v._hk=1; const nm=()=>(v.dataset.src||v.currentSrc||"").slice(-6); v.addEventListener("error",()=>dbg("video error "+(v.error?v.error.code:"?")+" "+nm())); v.addEventListener("playing",()=>dbg("playing "+nm())); }
 document.querySelectorAll('img[src]').forEach(i=>{ const m=M(i.getAttribute("src")); if(m!==i.getAttribute("src")) i.src=m; });
-document.querySelectorAll("video").forEach(v=>{
+document.querySelectorAll("video").forEach(v=>{ v.disableRemotePlayback=true; v.setAttribute("x-webkit-airplay","deny"); v.setAttribute("disablepictureinpicture","");
   const s=v.getAttribute("src"), p=v.getAttribute("poster"); if(p) v.setAttribute("poster",M(p));
   if(s){ const m=M(s); if(HOSTED && /^\/_blob\//.test(m)){ v.removeAttribute("src"); v.dataset.src=m; } else v.setAttribute("src",m); }
   hookVideo(v);
