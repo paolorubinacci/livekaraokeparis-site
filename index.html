@@ -550,25 +550,6 @@ form .btn.sub:disabled{cursor:default}
 #fmsg.ok{color:var(--spot)}
 #fmsg.err{color:#ff9d9d}
 @media (prefers-reduced-motion:reduce){form .btn.sub .arw{display:none}}
-/* desktop hero: copy on the left, tiles on the right, the four facts in one row underneath, so the whole opener (and the song ticker) fits on one screen */
-@media (min-width:1000px){
-  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:". a" "e a" "h a" "l a" "c a" ". a" "f f";grid-template-rows:1fr auto auto auto auto 1fr auto;column-gap:56px;row-gap:0;align-items:start;min-height:0;padding-block:clamp(92px,8.5vw,118px) clamp(22px,2.4vw,34px)}
-  .hero .copy{display:contents}
-  .hero .copy>.eyebrow{grid-area:e}
-  .hero .copy>h1{grid-area:h;margin-top:18px}
-  .hero .copy>.lede{grid-area:l;margin-top:18px}
-  .hero .copy>.ctas{grid-area:c;margin-top:22px}
-  .hero .copy>.facts{grid-area:f;margin-top:clamp(14px,2vw,26px);grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:none!important;gap:14px!important}
-  .hero .art{grid-area:a;align-self:start;margin-top:-6px;max-width:min(540px,42vw,calc((100vh - 330px)*.93))}
-}
-@media (min-width:1000px){
-  .hero .copy>h1{font-size:clamp(2.2rem,min(4.3vw,7.2vh),4.2rem);line-height:1.05;margin-top:14px}
-  .hero .copy>.lede{font-size:clamp(.98rem,min(1.25vw,2.3vh),1.15rem);margin-top:14px}
-  .hero .copy>.ctas{margin-top:18px}
-  .hero .copy>.facts{margin-top:clamp(12px,1.8vh,22px)}
-  .hero .copy>.facts .fact{padding-block:10px}
-  .hero{padding-block:clamp(84px,10vh,110px) clamp(16px,2.2vh,28px)}
-}
 </style>
 </head>
 <body>
@@ -1054,7 +1035,7 @@ function renderDates(){
       const t=cl((vh*.95-r.top)/(r.height*1.45));
       if(y<60) held=0; else held=Math.max(held,t);
       target=still?1:held;
-      if(y<60) cur=Math.min(cur,target+.0), cur=target; /* no lerp lag on the rewind */
+      if(y<60) cur=target;
     } else
     target=still?1:cl(((vh*(up?1.5:.95))-r.top)/(r.height*(up?1.8:1.45)));
     if(cur<0){ cur=target; apply(cur); return; }
