@@ -565,6 +565,31 @@ form .btn.sub:disabled{cursor:default}
   html[data-lang="fr"] .hero h1 br.fb{display:inline}
   html[data-lang="fr"] .hero h1{white-space:nowrap}
 }
+/* tiles rise to the eyebrow line, and sit above the four facts */
+.hero .yt{display:inline}
+.fact .more{display:none}
+@media (min-width:1000px){
+  .hero .yt{display:none}
+  .hero .art{grid-row:1 / 6!important;margin-top:2px!important;margin-bottom:0;z-index:3!important}
+  .hero .copy>.facts{z-index:1!important}
+  .hero .copy>h1{z-index:4}
+  .hero .art{pointer-events:none}
+  .hero .art a{pointer-events:auto}
+}
+/* desktop hover: the circle around the icon grows to fill the card, the figure gives way to a short description */
+@media (min-width:1000px) and (hover:hover){
+  .hero .fact{position:relative;overflow:hidden;transition:border-color .35s ease}
+  .hero .fact>i,.hero .fact>p{position:relative;z-index:2}
+  .hero .fact>p{transition:opacity .22s ease,transform .35s ease}
+  .hero .fact .more{display:flex;align-items:center;position:absolute;inset:0;z-index:1;padding:0 16px 0 66px;background:rgba(255,191,115,.17);opacity:0;clip-path:circle(20px at 34px 50%);transition:clip-path .55s cubic-bezier(.65,0,.2,1),opacity .15s ease .0s;pointer-events:none}
+  .hero .fact .more span{white-space:normal;font-size:.84rem;font-weight:600;line-height:1.3;letter-spacing:.01em;color:var(--ink);opacity:0;transform:translateX(-8px);transition:opacity .3s ease,transform .45s ease}
+  .hero .copy>.facts:hover{z-index:5!important}
+  .hero .fact:hover{border-color:rgba(255,191,115,.55)}
+  .hero .fact:hover .more{opacity:1;clip-path:circle(330px at 34px 50%)}
+  .hero .fact:hover .more span{opacity:1;transform:none;transition-delay:.22s}
+  .hero .fact:hover>p{opacity:0;transform:translateX(10px)}
+  .hero .fact:hover>i{background:rgba(255,191,115,.28)}
+}
 </style>
 </head>
 <body>
@@ -630,17 +655,17 @@ form .btn.sub:disabled{cursor:default}
   <header class="hero">
     <div class="copy">
       <span class="eyebrow"><span lang="fr">Karaoké avec groupe live · Paris</span><span lang="en">Live band karaoke · Paris</span></span>
-      <h1><span lang="fr">Prends le micro.<br class="fb"> Le groupe te suit,<br class="fb"> en <span class="script">live!</span></span><span lang="en">Grab the mic. The band plays it <span class="script">live!</span></span></h1>
-      <p class="lede"><span lang="fr">Pas de vidéo YouTube, pas de bande-son : <b>un vrai groupe sur scène</b> qui joue ta chanson pendant que tu chantes, et <b>toute la salle</b> qui reprend le refrain avec toi.</span><span lang="en">No YouTube backing track. <b>A real band on stage</b> plays your song while you sing it, and <b>the whole room</b> joins in on the chorus.</span></p>
+      <h1><span lang="fr">Prends le micro.<br class="fb"> Le groupe<br class="fb"> te suit, en <span class="script">live!</span></span><span lang="en">Grab the mic. The band plays it <span class="script">live!</span></span></h1>
+      <p class="lede"><span lang="fr">Pas de <span class="yt">vidéo YouTube, pas de </span>bande-son : <b>un vrai groupe sur scène</b> qui joue ta chanson pendant que tu chantes, et <b>toute la salle</b> qui reprend le refrain avec toi.</span><span lang="en">No YouTube backing track. <b>A real band on stage</b> plays your song while you sing it, and <b>the whole room</b> joins in on the chorus.</span></p>
       <div class="ctas">
         <a class="cta-big" href="#booker"><span class="lbl">Book</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
         <span class="cta-sub"><span lang="fr">Bars · Soirées étudiantes · Événements privés &amp; corporate</span><span lang="en">Bars · Student parties · Private &amp; corporate events</span></span>
       </div>
       <div class="facts">
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span></p></div>
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span></p></div>
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span></p></div>
-        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span></p></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span></p><div class="more" aria-hidden="true"><span lang="fr">Pop · Disco 80s · Rock · Soul · Latino · Disney</span><span lang="en">Pop · 80s disco · Rock · Soul · Latin · Disney</span></div></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span></p><div class="more" aria-hidden="true"><span lang="fr">Anglais · Français · Espagnol · Italien · Arabe</span><span lang="en">English · Français · Español · Italiano · العربية</span></div></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span></p><div class="more" aria-hidden="true"><span lang="fr">Claviers · guitare · basse · batterie</span><span lang="en">Keys · guitar · bass · drums</span></div></div>
+        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span></p><div class="more" aria-hidden="true"><span lang="fr">On adapte le format à votre lieu</span><span lang="en">We adapt the format to your venue</span></div></div>
       </div>
     </div>
     <div class="art"><a class="a1" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
