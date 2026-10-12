@@ -4,15 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#141a33">
-<meta name="description" content="Live Karaoke Paris : du karaoké avec un vrai groupe live, pour les bars, soirées étudiantes et événements privés à Paris. / Live band karaoke in Paris for bars, student parties and private events.">
-<meta property="og:title" content="Live Karaoke Paris">
-<meta property="og:description" content="Karaoke with a real live band. You on the mic, Paris on the chorus.">
-<meta property="og:image" content="logo.png">
+<meta name="description" content="Karaoké live à Paris avec un vrai groupe sur scène : soirées karaoké chaque semaine dans un bar du Quartier latin et groupe live pour vos événements privés, anniversaires, mariages et soirées d'entreprise. Live band karaoke in Paris.">
+<link rel="canonical" href="https://livekaraokeparis.fr/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Live Karaoke Paris">
+<meta property="og:url" content="https://livekaraokeparis.fr/">
+<meta property="og:title" content="Live Karaoke Paris · Karaoké avec groupe live à Paris">
+<meta property="og:description" content="Le karaoké avec un vrai groupe live. Toi au micro, Paris au refrain. Soirées dans les bars et événements privés à Paris.">
+<meta property="og:image" content="https://livekaraokeparis.fr/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Live Karaoke Paris · Live band karaoke in Paris">
+<meta name="twitter:description" content="Karaoke with a real live band. You on the mic, Paris on the chorus.">
+<meta name="twitter:image" content="https://livekaraokeparis.fr/og-image.jpg">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"MusicGroup","@id":"https://livekaraokeparis.fr/#band","name":"Live Karaoke Paris","alternateName":["Live Karaoke Band","Karaoké live Paris"],"url":"https://livekaraokeparis.fr/","logo":"https://livekaraokeparis.fr/logo.png","image":"https://livekaraokeparis.fr/og-image.jpg",
+  "description":"Karaoké avec un vrai groupe live à Paris : le public choisit sa chanson et chante avec un groupe sur scène. Soirées hebdomadaires dans un bar du Quartier latin et groupe live pour événements privés et d'entreprise.",
+  "genre":["Karaoke","Pop","Rock","Soul","Latin","Disney"],"foundingLocation":{"@type":"Place","name":"Cité internationale universitaire de Paris"},"areaServed":{"@type":"City","name":"Paris"},
+  "knowsLanguage":["fr","en","it","es","ar"]},
+ {"@type":"Service","@id":"https://livekaraokeparis.fr/#service","name":"Karaoké avec groupe live pour événements à Paris","serviceType":"Groupe live / animation karaoké pour bars, anniversaires, mariages, soirées d'entreprise et soirées étudiantes","provider":{"@id":"https://livekaraokeparis.fr/#band"},"areaServed":{"@type":"City","name":"Paris"},"url":"https://livekaraokeparis.fr/#booker"}
+]}
+</script>
 <link rel="icon" href="favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Live Karaoke Paris</title>
+<title>Live Karaoke Paris · Karaoké avec groupe live à Paris</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="logo.png">
@@ -977,7 +999,8 @@ const DATES = [
 const SONGS = [["Dancing Queen","EN"],["Alors On Danse","FR"],["Billie Jean","EN"],["Despacito","ES"],["Sweet Caroline","EN"],["Nel Blu Dipinto Di Blu (Volare)","IT"],["Let It Be","EN"],["Let It Go","DISNEY"],["I Will Survive","EN"],["Les Champs-Élysées","FR"],["Rolling In The Deep","EN"],["Danza Kuduro","ES"],["Wonderwall","EN"],["Sarà Perché Ti Amo","IT"],["Stand By Me","EN"],["Hakuna Matata","DISNEY"],["Twist And Shout","EN"],["Non, Je Ne Regrette Rien","FR"],["Viva La Vida","EN"],["Waka Waka","EN"],["Hit The Road Jack","EN"],["Bella Ciao","IT"],["Mamma Mia","EN"],["A Whole New World","DISNEY"]];
 
 let lang = "fr";
-try{ lang = localStorage.getItem("lkp-lang") || ((navigator.language||"fr").toLowerCase().startsWith("fr") ? "fr" : "en"); }catch(e){ lang = (navigator.language||"fr").toLowerCase().startsWith("fr") ? "fr" : "en"; }
+const devLang = (((navigator.languages&&navigator.languages[0])||navigator.language||"fr")+"").toLowerCase().startsWith("fr") ? "fr" : "en";
+try{ lang = localStorage.getItem("lkp-lang") || devLang; }catch(e){ lang = devLang; }
 
 function setLang(l){
   lang = l; document.documentElement.dataset.lang = l; document.documentElement.lang = l;
@@ -994,6 +1017,19 @@ const one = SONGS.map(([t,l])=>`<span><em>★</em>${t}<small>${l}</small></span>
 track.innerHTML = one + one;
 /* pause the ticker while it is off-screen so it never competes with the videos for the GPU */
 if("IntersectionObserver" in window){ const tk=track.closest(".ticker"); new IntersectionObserver(es=>es.forEach(e=>tk.classList.toggle("off",!e.isIntersecting)),{rootMargin:"80px"}).observe(tk); }
+
+/* upcoming nights as Google-readable events, from the same DATES list */
+(function(){ try{
+  const today=new Date(); today.setHours(0,0,0,0);
+  const ev=DATES.filter(x=>new Date(x.d+"T12:00:00")>=today).map(x=>({"@context":"https://schema.org","@type":"MusicEvent",
+    "name":"Live Karaoke Paris · "+x.venue,"description":"Karaoké avec un groupe live : choisis ta chanson et chante avec le groupe sur scène. Entrée libre.",
+    "startDate":x.d,"eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+    "location":{"@type":"Place","name":x.venue,"address":{"@type":"PostalAddress","streetAddress":"27 Rue de la Huchette","postalCode":"75005","addressLocality":"Paris","addressCountry":"FR"}},
+    "performer":{"@type":"MusicGroup","name":"Live Karaoke Paris","url":"https://livekaraokeparis.fr/"},
+    "organizer":{"@type":"Organization","name":"Live Karaoke Paris","url":"https://livekaraokeparis.fr/"},
+    "image":"https://livekaraokeparis.fr/og-image.jpg","url":"https://livekaraokeparis.fr/#dates"}));
+  if(ev.length){ const s=document.createElement("script"); s.type="application/ld+json"; s.textContent=JSON.stringify(ev); document.head.appendChild(s); }
+}catch(e){} })();
 
 /* dates */
 function renderDates(){
