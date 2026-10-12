@@ -1170,7 +1170,7 @@ function renderDates(){
     /* going down it draws a bit sooner; going up it holds on to what is drawn, so there is time to read and scroll back without the route (and the "Your event" button) vanishing */
     const y=scrollY, up=y<lastY-1; if(Math.abs(y-lastY)>1) lastY=y;
     /* drawing starts as the route enters the screen and is finished as soon as the whole route is on screen, before the next section shows up */
-    const endTop=vh-(innerWidth>=1000?40:0)-r.height, startTop=vh, down=cl((startTop-r.top)/(startTop-endTop));
+    const endTop=vh-(innerWidth>=1000?80:20)-r.height, startTop=vh, down=cl((startTop-r.top)/(startTop-endTop));
     if(matchMedia("(min-width:761px)").matches){
       /* desktop: once drawn it stays; it only rewinds when the page is back at the very top, so it unfolds again on the next way down */
       const t=down;
@@ -1182,11 +1182,15 @@ function renderDates(){
     if(cur<0){ cur=target; apply(cur); return; }
     if(!raf) raf=requestAnimationFrame(step);
   }
-  function step(){
-    raf=0; cur+=(target-cur)*.35;
+  /* the line follows the scroll, but never faster than a whole route in ~0.85 s (phones) / ~1 s (desktop), so a quick flick still shows the drawing */
+  let lastT=0;
+  function step(now){
+    raf=0; const dt=lastT?Math.min(.05,(now-lastT)/1000):1/60; lastT=now;
+    const cap=dt/(innerWidth>=1000?1.0:0.85), d=(target-cur)*.25;
+    cur+=Math.sign(d)*Math.min(Math.abs(d),cap);
     if(Math.abs(target-cur)<.002) cur=target;
     apply(cur);
-    if(cur!==target) raf=requestAnimationFrame(step);
+    if(cur!==target) raf=requestAnimationFrame(step); else lastT=0;
   }
   addEventListener("scroll",measure,{passive:true}); addEventListener("resize",measure);
   measure();
