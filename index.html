@@ -642,6 +642,13 @@ form .btn.sub:disabled{cursor:default}
   .journey.sl .stop.a p,.journey.sl .stop.c p,.journey.sl .stop.b p{transform:translateX(calc(10px*(1 - var(--l,0))))}
   .stop.b{flex-direction:row-reverse;justify-content:flex-end;padding-left:clamp(0px,1.5vw,18px)}
 }
+/* ---- v33: same visual gap between every section (the smaller one wins) ----
+   the clip strip keeps extra room under the videos for the spotlight glow, and on desktop the route's last bubble sits inside a taller row: take that room back */
+#ambiance .reel.x{margin-bottom:-64px}#ambiance .reel:not(.x){margin-bottom:-18px}
+@media (min-width:1000px){#histoire .txt{margin-bottom:-18px}}
+/* sections that open with a small label: the label's line spacing adds ~10px of air above it, so start them 10px higher */
+#format,#ambiance,#dates{padding-top:calc(clamp(32px,8vw,140px) - 10px)}
+@media (min-width:1000px){#format,#ambiance,#dates{padding-top:calc(clamp(64px,6.5vw,104px) - 10px)}}
 </style>
 </head>
 <body>
