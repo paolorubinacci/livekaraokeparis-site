@@ -634,18 +634,19 @@ form .btn.sub:disabled{cursor:default}
 /* ---- v32 ---- */
 /* phones/tablets: the last stop of the route has empty room under its bubble; take it back so the gap to "How it works" matches the gap between the other sections */
 @media (max-width:999px){.journey{margin-bottom:calc((96px - 58px) / -2)}}
-/* desktop: the route zig-zags - bubble right / text left, bubble left / text right, bubble right / text left */
+/* the route zig-zags on every screen: bubble right / text left, bubble left / text right, bubble right / text left (narrower swing on phones) */
+.stop.a,.stop.c{--pr:clamp(0px,4vw,22px);justify-content:flex-end;text-align:right}
+.stop.a p,.stop.c p{align-items:flex-end}
+.journey.sl .stop.a p,.journey.sl .stop.c p,.journey.sl .stop.b p{transform:translateX(calc(10px*(1 - var(--l,0))))}
+.stop.b{flex-direction:row-reverse;justify-content:flex-end;padding-left:clamp(0px,4vw,22px)}
 @media (min-width:1000px){
-  .story .txt .journey{max-width:460px}
-  .stop.a,.stop.c{--pr:0px;justify-content:flex-end;text-align:right}
-  .stop.a p,.stop.c p{align-items:flex-end}
-  .journey.sl .stop.a p,.journey.sl .stop.c p,.journey.sl .stop.b p{transform:translateX(calc(10px*(1 - var(--l,0))))}
-  .stop.b{flex-direction:row-reverse;justify-content:flex-end;padding-left:clamp(0px,1.5vw,18px)}
+  .story .txt .journey{max-width:460px;align-self:start}
+  .stop.a,.stop.c{--pr:0px}
+  .stop.b{padding-left:clamp(0px,1.5vw,18px)}
 }
 /* ---- v33: same visual gap between every section (the smaller one wins) ----
    the clip strip keeps extra room under the videos for the spotlight glow, and on desktop the route's last bubble sits inside a taller row: take that room back */
 #ambiance .reel.x{margin-bottom:-64px}#ambiance .reel:not(.x){margin-bottom:-18px}
-@media (min-width:1000px){#histoire .txt{margin-bottom:-18px}}
 /* sections that open with a small label: the label's line spacing adds ~10px of air above it, so start them 10px higher */
 #format,#ambiance,#dates{padding-top:calc(clamp(32px,8vw,140px) - 10px)}
 @media (min-width:1000px){#format,#ambiance,#dates{padding-top:calc(clamp(64px,6.5vw,104px) - 10px)}}
@@ -965,7 +966,7 @@ function setLang(l){
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", b.dataset.l===l));
   try{ localStorage.setItem("lkp-lang", l); }catch(e){}
   document.querySelectorAll("#f-fmt option").forEach(o=>{ o.textContent = o.dataset[l]; });
-  renderDates(); if(window.__reelLabel) window.__reelLabel();
+  renderDates(); if(window.__reelLabel) window.__reelLabel(); if(window.__placeJourney) window.__placeJourney();
 }
 document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.l)));
 
@@ -1137,7 +1138,22 @@ function renderDates(){
     }
     svg.setAttribute("viewBox",`0 0 ${jr.width} ${jr.height}`); base.setAttribute("d",d); draw.setAttribute("d",d);
   }
-  layout(); addEventListener("resize",layout); addEventListener("load",layout);
+  const txt=j.parentElement, wide=matchMedia("(min-width:1000px)");
+  function place(){
+    if(!wide.matches){ j.style.marginTop=""; txt.style.marginBottom=""; return; }
+    j.style.marginTop="0px"; txt.style.marginBottom="0px";
+    const ps=[...txt.querySelectorAll(":scope > p")].filter(p=>p.offsetParent); if(!ps.length) return;
+    const p1=ps[0].getBoundingClientRect(), lh=parseFloat(getComputedStyle(ps[0]).lineHeight)||28;
+    const sb=j.querySelector(".stop.b").getBoundingClientRect(), want=p1.top+2*lh, now=sb.top+sb.height/2;
+    j.style.marginTop=Math.max(0,Math.round(want-now))+"px";
+    const sc=j.querySelector(".stop.c").getBoundingClientRect(), last=ps[ps.length-1].getBoundingClientRect();
+    const lowest=Math.max(last.bottom, sc.top+sc.height/2+29), tb=txt.getBoundingClientRect().bottom;
+    txt.style.marginBottom=-Math.max(0,Math.round(tb-lowest))+"px";
+  }
+  function relayout(){ place(); layout(); }
+  window.__placeJourney=relayout;
+  relayout(); addEventListener("resize",relayout); addEventListener("load",relayout);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(relayout);
   if("ResizeObserver" in window) new ResizeObserver(layout).observe(j);
   /* scroll-linked: the route is drawn exactly as fast as the page is scrolled (and un-drawn on the way back up) */
   const stops=[...j.querySelectorAll(".stop")], cl=x=>Math.max(0,Math.min(1,x));
@@ -1153,19 +1169,21 @@ function renderDates(){
     const r=j.getBoundingClientRect(), vh=innerHeight;
     /* going down it draws a bit sooner; going up it holds on to what is drawn, so there is time to read and scroll back without the route (and the "Your event" button) vanishing */
     const y=scrollY, up=y<lastY-1; if(Math.abs(y-lastY)>1) lastY=y;
+    /* drawing starts as the route enters the screen and is finished as soon as the whole route is on screen, before the next section shows up */
+    const endTop=vh-(innerWidth>=1000?40:0)-r.height, startTop=vh, down=cl((startTop-r.top)/(startTop-endTop));
     if(matchMedia("(min-width:761px)").matches){
       /* desktop: once drawn it stays; it only rewinds when the page is back at the very top, so it unfolds again on the next way down */
-      const t=cl((vh*.95-r.top)/(r.height*1.45));
+      const t=down;
       if(y<60) held=0; else held=Math.max(held,t);
       target=still?1:held;
       if(y<60) cur=target;
     } else
-    target=still?1:cl(((vh*(up?1.5:.95))-r.top)/(r.height*(up?1.8:1.45)));
+    target=still?1:(up?cl(((vh*1.5)-r.top)/(r.height*1.8)):down);
     if(cur<0){ cur=target; apply(cur); return; }
     if(!raf) raf=requestAnimationFrame(step);
   }
   function step(){
-    raf=0; cur+=(target-cur)*.22;
+    raf=0; cur+=(target-cur)*.35;
     if(Math.abs(target-cur)<.002) cur=target;
     apply(cur);
     if(cur!==target) raf=requestAnimationFrame(step);
