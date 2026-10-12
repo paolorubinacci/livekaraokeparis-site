@@ -592,6 +592,42 @@ form .btn.sub:disabled{cursor:default}
   .hero .fact>i{transition:background 0s .55s}
   .hero .fact:hover>i{background:transparent;transition:none}
 }
+/* ---- v30: contact = one panel; photo + next steps on the left, form on the right (stacked on phones) ---- */
+.contact{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin-top:44px;background:var(--night);border:1px solid var(--line);border-radius:28px;overflow:hidden;align-items:stretch;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.contact .direct{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:0;min-width:0;padding:clamp(22px,4vw,40px);min-height:320px;isolation:isolate;overflow:hidden}
+.contact .direct .ph{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 38%;z-index:-2}
+.contact .direct::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,19,40,.28) 0%,rgba(14,19,40,.7) 42%,rgba(14,19,40,.94) 70%,var(--deep) 100%)}
+.contact .dtxt{display:flex;flex-direction:column;gap:14px;min-width:0}
+.contact .direct .eyebrow{color:var(--spot)}
+.contact .direct h3{font-family:var(--head);font-size:clamp(1.7rem,6.4vw,2.2rem);line-height:1.08;margin:0;text-wrap:balance}
+.contact .direct p{color:rgba(243,240,251,.84);margin:0;max-width:42ch}
+.next{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:14px;counter-reset:n}
+.next li{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:13px;row-gap:1px;counter-increment:n}
+.next li::before{content:counter(n);grid-row:1/3;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 .86rem/1 var(--head);padding-top:2px;box-sizing:border-box;color:var(--deep);background:var(--lilac)}
+.next b{font-family:var(--head);font-weight:600;font-size:1.04rem;color:var(--ink);line-height:1.25;padding-top:5px}
+.next small{color:var(--muted);font-size:.86rem;line-height:1.45}
+.contact form{background:transparent;border-radius:0;padding:clamp(22px,4vw,40px)}
+@media (min-width:821px){
+  .contact{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+  .contact .direct{min-height:0}
+  .contact .direct::after{background:linear-gradient(180deg,rgba(14,19,40,.18) 0%,rgba(14,19,40,.55) 34%,rgba(14,19,40,.9) 58%,var(--deep) 100%)}
+  .contact form{align-content:start;border-left:1px solid var(--line)}
+}
+@media (min-width:1000px){
+  .contact{margin-top:64px}
+  .contact .direct,.contact form{padding:clamp(36px,3.6vw,52px)}
+  .contact .direct h3{font-size:clamp(2rem,2.6vw,2.6rem)}
+}
+@media (max-width:520px){
+  .contact{margin-top:32px;border-radius:24px}
+  .contact .direct{padding:150px 20px 22px;min-height:0}
+  .contact .direct{background:var(--deep)}
+  .contact .direct .ph{bottom:auto;height:330px;object-position:50% 58%}
+  .contact .direct::after{background:linear-gradient(180deg,rgba(14,19,40,.0) 0%,rgba(14,19,40,.35) 70px,rgba(14,19,40,.85) 190px,var(--deep) 330px)}
+  .contact form{padding:10px 20px 24px}
+  .contact .seg button{letter-spacing:.07em;padding-inline:4px}
+  .next{gap:12px}
+}
 </style>
 </head>
 <body>
@@ -793,8 +829,17 @@ form .btn.sub:disabled{cursor:default}
 
       <div class="contact" id="contact">
         <div class="direct">
-          <h3><span lang="fr">Parlons de votre date</span><span lang="en">Let's talk about your date</span></h3>
-          <p><span lang="fr">Bar, anniversaire, fête de diplôme, mariage, soirée d'entreprise : écrivez-nous pour tout événement, privé ou public. Remplissez le formulaire pour préparer votre message.</span><span lang="en">Bar, birthday, graduation party, wedding, company night: write to us for any event, private or public. Fill in the form to draft your message.</span></p>
+          <img class="ph" src="contact.jpg" alt="" loading="lazy" decoding="async" width="720" height="1280">
+          <div class="dtxt">
+            <span class="eyebrow"><span lang="fr">Contact</span><span lang="en">Contact</span></span>
+            <h3><span lang="fr">Parlons de votre date</span><span lang="en">Let's talk about your date</span></h3>
+            <p><span lang="fr">Bar, anniversaire, fête de diplôme, mariage, soirée d'entreprise : dites-nous ce que vous imaginez, on revient vers vous avec une proposition sur mesure.</span><span lang="en">Bar, birthday, graduation party, wedding, company night: tell us what you have in mind and we'll come back to you with a tailored proposal.</span></p>
+            <ol class="next">
+              <li><b><span lang="fr">Vous nous écrivez</span><span lang="en">You write to us</span></b><small><span lang="fr">Le lieu, la date, le nombre d'invités : quelques infos suffisent.</span><span lang="en">Venue, date, number of guests: a few details are enough.</span></small></li>
+              <li><b><span lang="fr">On vous conseille</span><span lang="en">We advise you</span></b><small><span lang="fr">La formule adaptée à votre lieu et à votre budget.</span><span lang="en">The set-up that fits your venue and budget.</span></small></li>
+              <li><b><span lang="fr">On fixe la date</span><span lang="en">We lock in the date</span></b><small><span lang="fr">Groupe, chansons et animation : on s'occupe du reste.</span><span lang="en">Band, songs and hosting: we handle the rest.</span></small></li>
+            </ol>
+          </div>
         </div>
         <form id="bookForm" novalidate>
           <div class="full">
