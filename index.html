@@ -660,6 +660,14 @@ form .btn.sub:disabled{cursor:default}
   .hero h1 .ln{white-space:nowrap}
   .hero h1{font-size:min(2.6rem,calc((100vw - 2 * var(--gut)) / 8.6));text-wrap:wrap}
 }
+/* phones: tap the floating pill (anywhere but the logo, Book or the menu button) to bring back the FR / EN switch; it folds away again after choosing */
+@media (max-width:760px){
+  nav.top.scrolled .navpill{cursor:pointer}
+  nav.top.scrolled.peek:not(.open) .navpill{max-width:min(360px,calc(100% - 28px))}
+  nav.top.scrolled.peek:not(.open) .mlang{opacity:1;pointer-events:auto;max-width:120px;margin-right:4px;transform:none;overflow:visible}
+  nav.top.scrolled.peek .mlang button{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.28);color:rgba(243,240,251,.85)}
+  nav.top.scrolled.peek .mlang button[aria-pressed="true"]{border-color:var(--lilac);background:rgba(196,181,253,.2);color:var(--ink)}
+}
 </style>
 </head>
 <body>
@@ -1298,7 +1306,7 @@ const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
   let scrolled=false, open=false, ticking=false;
   function squish(){ pill.classList.remove("squish"); void pill.offsetWidth; pill.classList.add("squish"); }
   pill.addEventListener("animationend",()=>pill.classList.remove("squish"));
-  function setScrolled(v){ if(v===scrolled) return; scrolled=v; nav.classList.toggle("scrolled",v); if(mq.matches && !open) squish(); }
+  function setScrolled(v){ if(v===scrolled) return; scrolled=v; nav.classList.toggle("scrolled",v); if(!v) setPeek(false); if(mq.matches && !open) squish(); }
   function setOpen(v, focusBack){
     if(v===open) return; open=v;
     nav.classList.toggle("open",v); root.classList.toggle("menu-open",v);
@@ -1316,7 +1324,18 @@ const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
     else if(scrolled && y<12) setScrolled(false);
   }
   addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
-  bg.addEventListener("click",()=>setOpen(!open));
+  bg.addEventListener("click",()=>{setPeek(false);setOpen(!open)});
+  /* language peek on the collapsed pill */
+  let peek=false, peekT=0, peekY=0;
+  function setPeek(v){ if(v===peek) return; peek=v; nav.classList.toggle("peek",v); clearTimeout(peekT); if(v){ peekY=scrollY; peekT=setTimeout(()=>setPeek(false),6000); } if(!open) squish(); }
+  pill.addEventListener("click",e=>{
+    if(!scrolled||open||innerWidth>760) return;
+    if(e.target.closest("a,button")) return;
+    setPeek(!peek);
+  });
+  nav.querySelectorAll(".mlang button").forEach(b=>b.addEventListener("click",()=>{ if(peek) setTimeout(()=>setPeek(false),450); }));
+  document.addEventListener("click",e=>{ if(peek && !pill.contains(e.target)) setPeek(false); });
+  addEventListener("scroll",()=>{ if(peek && Math.abs(scrollY-peekY)>80) setPeek(false); },{passive:true});
   scrim.addEventListener("click",()=>setOpen(false));
   menu.querySelectorAll("a.ml").forEach(a=>a.addEventListener("click",()=>setOpen(false)));
   nav.querySelectorAll(".mctl .cta").forEach(a=>a.addEventListener("click",()=>setOpen(false)));
