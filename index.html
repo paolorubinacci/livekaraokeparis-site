@@ -11,6 +11,10 @@
 <link rel="icon" href="logo-mark.png">
 <title>Live Karaoke Paris</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="logo.png">
+<link rel="preload" as="image" href="bg-mobile.jpg" media="(max-width: 820px), (orientation: portrait)">
+<link rel="preload" as="image" href="bg-desktop.jpg" media="(min-width: 821px) and (orientation: landscape)">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Montserrat:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: one night out, top to bottom: full-screen blurred opener, headline, song ticker, origin story, the 3-step format, video reel, where to see us live, book us for bars & private events, musicians call. Single dark "night at the bar" look shared with the songlist and band app. */
@@ -43,9 +47,11 @@ html[data-lang="fr"] [lang="en"], html[data-lang="en"] [lang="fr"]{display:none!
 /* full-screen opener */
 .intro{position:relative;margin-inline:calc(var(--gut)*-1);height:100vh;height:100svh;display:grid;place-items:center;overflow:hidden;isolation:isolate;text-align:center;padding:calc(56px + env(safe-area-inset-top,0px)) 16px 64px}
 .intro video,.intro .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3}
-.intro video{opacity:0;transition:opacity .5s ease}
+.intro video{opacity:0;transition:opacity .6s ease}
 .intro video.on{opacity:1}
-.intro .poster{background:var(--night) center/cover no-repeat}
+/* the opener paints at once: a 1 KB inline copy of the first frame shows instantly, the sharp poster lands on top, then the video fades in over it */
+.intro .poster{background:url(bg-desktop.jpg) center/cover no-repeat,url(data:image/jpeg;base64,/9j//gAQTGF2YzYwLjMxLjEwMgD/2wBDAAgKCgsKCw0NDQ0NDRAPEBAQEBAQEBAQEBASEhIVFRUSEhIQEBISFBQVFRcXFxUVFRUXFxkZGR4eHBwjIyQrKzP/xAB/AAADAAMBAAAAAAAAAAAAAAAEBQYHAgMBAQADAQEBAAAAAAAAAAAAAAADBQQCAQYQAAEDAgQCCQUBAQAAAAAAAAEAAgMEEUEhMRJRgRPRYXIVUgUyIqHxkSPwM3ERAAEDBAICAwEAAAAAAAAAAAEAAhEEEkEDMYEykSGh0WH/wAARCAAXACgDASIAAhEAAxEA/9oADAMBAAIRAxEAPwDHtFTxsu14cWubuHby61OVImjne1xPZ3cPoqWjG7awucXPa4Z3u1tzohKyOHp4+jJMgbaTEZZWPalujcBWPZJdIziM9ozm9L30y8Z3OdZhYSb53CdHo5htYANDra/JKqc5FntdYgI6hb+5t3A2+PBeh06mvfcXWwsHA9ptDQykHbtF9Cfsu/h1V54/7knkVxkANoGvErtuXH7yHGAI/vygmCsQT1ckD2iJxa7YWk8AeCXU85ilEh+efyBx4rar/wBuQQYS2mY226BJ5OVVt8yqKoqGSyOcwWB2FmFrDFbwT4Z3AKWNw7oREPud/wAKe0/AU5VdT+rTtYBZpsNSDdE+MT+Vn4PWpuH2ohUuptJPgPv9QZK//9k=) center/cover no-repeat,var(--night)}
+@media (max-width:820px),(orientation:portrait){.intro .poster{background:url(bg-mobile.jpg) center/cover no-repeat,url(data:image/jpeg;base64,/9j//gAQTGF2YzYwLjMxLjEwMgD/2wBDAAgKCgsKCw0NDQ0NDRAPEBAQEBAQEBAQEBASEhIVFRUSEhIQEBISFBQVFRcXFxUVFRUXFxkZGR4eHBwjIyQrKzP/xACHAAADAQEBAQEAAAAAAAAAAAAGBAUDBwACAQEAAgMBAQAAAAAAAAAAAAAAAwQFAAIBBhAAAQMCBAQEBAUFAQAAAAAAAQACAwQRQTEhEgVhUROhkRQiFbFTgZJCUsEycXKCVNFjEQACAgIBBQADAQEAAAAAAAACAQMAESESUQQxQYFxYRMzkf/AABEIAEcAKAMBIgACEQADEQD/2gAMAwEAAhEDEQA/AOUCqByJWnrdptqVIh3a2FwBqthHqSdCRihKMPdvIrZ9cAMbpmKvLiBbVRGRGQWAKaihcw352umQ7YC/N5zfWkIrnMNsl9/EHqe2LcdASdLLb0sv6HeRTI9kGNq3+j63Xh1FE3cyTdtey4Ix5eaFqrvRzvY7Sx0/tw8EYUO6QMY57nPe1zRfNjbnJIcQhhFTF2375NtpQdRpprzUBBMl3ZA23laXTHunIfl9wcFjiXkdtzCXbuiIHRQSjZE0Z3wsVIpSNhZoHAEC/Qqjw5h77buabe3ovQwwoz5cuOKNpatWn4dJZxYxt8CSmfQVv/n5okj00A0Az5ra6pz4J4FNft0LSvDqjiD6eRvZfZ4YWk6aX6c1MpaoxTiVw7mvuBx6/dS3Sb3F2KchtIWc80hHEIbxt+X7rBlyJ0jqaqKaZ7otB7CzlYa3WtPVc7EDNJCBjDncFTCSx5HOyl4CVC83ptNxqcMA2NdYZ63Tfxqb6TfFANPV9ohpJAOao+sj+t80Qhib/wA0/rvEOvN52Bd2mi1jJjdjmF8P9jjbFea4FpBxtY9FEItUrWG6YQDu09QMWMbIPsdfBQt13Oxyd+yq8GkJkmYfzQPHgh9zgASCbg2stiTy7mlFSIq50Zpnx7tgaWH2OJHgVh8Lrf0D8Tf+qFE6N7hdxZbEZqheL/Zl81pSSAkkS+p5utPeP+UeIc6114NctQv3BAHxbSrhuyD3Y7T7v6joh+qppGSEZ7iTfS+au0/8f8f2S1Z/Nv3+axG2ydNIKQp4sdkMrTowHrcjVM7X/Rb+JNNWiZdBf//Z) center/cover no-repeat,var(--night)}}
 .intro::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse 80% 62% at 50% 50%,rgba(14,19,40,.78),rgba(14,19,40,.42) 70%,rgba(14,19,40,.3)),linear-gradient(180deg,rgba(14,19,40,.55) 0%,transparent 28%,transparent 62%,var(--night) 100%)}
 .intro::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 30% 30%,rgba(196,181,253,.28),transparent 45%),radial-gradient(circle at 75% 70%,rgba(167,139,250,.22),transparent 45%);mix-blend-mode:screen}
 @keyframes drift{to{transform:translate(3%,-3%) scale(1.06)}}
@@ -245,7 +251,8 @@ nav.top .mctl,nav.top .menu,nav.top .scrim{display:none}
 .reel.x video{pointer-events:none}
 .reel::-webkit-scrollbar{display:none}
 .reel figure{flex:0 0 clamp(200px,24vw,270px);aspect-ratio:9/16;border-radius:20px;overflow:hidden;position:relative;background:var(--deep);margin:0;box-shadow:0 14px 34px -22px rgba(167,139,250,.55)}
-@supports (-webkit-touch-callout:none){.reel figure{isolation:isolate;transform:translateZ(0);-webkit-mask-image:-webkit-radial-gradient(white,black)}}
+@supports (-webkit-touch-callout:none){.reel figure{isolation:isolate;transform:translateZ(0)}}
+.reel video{border-radius:inherit}
 .reel video{width:100%;height:100%;object-fit:cover;display:block}
 .snd{position:absolute;left:50%;bottom:14px;translate:-50% 8px;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--lilac);color:var(--deep);font:700 .85rem var(--body);padding:9px 14px;cursor:pointer;opacity:0;transition:opacity .25s ease,translate .25s ease;box-shadow:0 6px 24px rgba(0,0,0,.45);white-space:nowrap}
 .snd svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -624,6 +631,17 @@ form .btn.sub:disabled{cursor:default}
   .contact .direct{padding-left:52px}
   .contact form{padding:36px 44px 32px 32px}
 }
+/* ---- v32 ---- */
+/* phones/tablets: the last stop of the route has empty room under its bubble; take it back so the gap to "How it works" matches the gap between the other sections */
+@media (max-width:999px){.journey{margin-bottom:calc((96px - 58px) / -2)}}
+/* desktop: the route zig-zags - bubble right / text left, bubble left / text right, bubble right / text left */
+@media (min-width:1000px){
+  .story .txt .journey{max-width:460px}
+  .stop.a,.stop.c{--pr:0px;justify-content:flex-end;text-align:right}
+  .stop.a p,.stop.c p{align-items:flex-end}
+  .journey.sl .stop.a p,.journey.sl .stop.c p,.journey.sl .stop.b p{transform:translateX(calc(10px*(1 - var(--l,0))))}
+  .stop.b{flex-direction:row-reverse;justify-content:flex-end;padding-left:clamp(0px,1.5vw,18px)}
+}
 </style>
 </head>
 <body>
@@ -632,6 +650,12 @@ form .btn.sub:disabled{cursor:default}
 <section class="intro" id="accueil">
   <div class="poster" id="poster" aria-hidden="true"></div>
   <video id="bg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <script>/* start the opener loop right here, before the rest of the page is parsed, so there is no wait */
+  (function(){var v=document.getElementById("bg");if(!v||window.__MEDIA||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var k=matchMedia("(max-width: 820px), (orientation: portrait)").matches?"mobile":"desktop",s=false;
+  function show(){if(s)return;s=true;v.classList.add("on");}
+  v.addEventListener("playing",function(){if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(function(){show();});setTimeout(show,400);});
+  v.poster="bg-"+k+".jpg";v.src="bg-"+k+".mp4";window.__bgStarted=1;var p=v.play();if(p&&p.catch)p.catch(function(){});})();</script>
   <div class="inner">
     <img class="big" src="logo.png" alt="Live Karaoke Paris">
     <div class="under">
@@ -723,7 +747,7 @@ form .btn.sub:disabled{cursor:default}
         <svg class="jpath" aria-hidden="true"><defs><linearGradient id="jgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#ffbf73"/></linearGradient></defs><path class="base"/><path class="draw" pathLength="1"/></svg>
         <div class="stop a" style="--d:0s"><p><b>Cité U</b><small><span lang="fr">Là où tout a commencé</span><span lang="en">Where it all began</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2.5 9 2.5 12 0v-5"/></svg></i></div>
         <div class="stop b" style="--d:.95s"><p><b><span lang="fr">Bars de Paris</span><span lang="en">Paris bars</span></b><small><span lang="fr">Là où on joue aujourd'hui</span><span lang="en">Where we play today</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M5 4h14l-7 8-7-8z"/><path d="M12 12v8M8 20h8"/></svg></i></div>
-        <a class="stop c" href="#contact" style="--d:1.9s"><p><b><span lang="fr">Votre événement</span><span lang="en">Your event</span></b><small><span lang="fr">Là où on jouera demain</span><span lang="en">Where we play next</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="m4 20 4-12 8 8-12 4z"/><path d="M14 4v2M19 9h2M17 6l1.5-1.5M10 4l.5 1.5"/></svg></i></a>
+        <a class="stop c" href="#contact" style="--d:1.9s"><p><b><span lang="fr">Votre événement</span><span lang="en">Your event</span></b><small><span lang="fr">Prochaine étape : chez vous</span><span lang="en">Next stop: your place</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="m4 20 4-12 8 8-12 4z"/><path d="M14 4v2M19 9h2M17 6l1.5-1.5M10 4l.5 1.5"/></svg></i></a>
       </div>
     </div>
   </section>
@@ -762,13 +786,13 @@ form .btn.sub:disabled{cursor:default}
     <h2><span lang="fr">Une soirée Live Karaoke, en vrai</span><span lang="en">A Live Karaoke night, for real</span></h2>
     <div class="reelwrap">
       <div class="reel" id="reel" tabindex="0" aria-label="Vidéos / Videos">
-      <figure><video src="clip1-s.mp4" data-quiet="clip1-s.mp4" data-loud="clip1.mp4" poster="clip1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip2-s.mp4" data-quiet="clip2-s.mp4" data-loud="clip2.mp4" poster="clip2.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip3-s.mp4" data-quiet="clip3-s.mp4" data-loud="clip3.mp4" poster="clip3.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip4-s.mp4" data-quiet="clip4-s.mp4" data-loud="clip4.mp4" poster="clip4.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip5-s.mp4" data-quiet="clip5-s.mp4" data-loud="clip5.mp4" poster="clip5.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip6-s.mp4" data-quiet="clip6-s.mp4" data-loud="clip6.mp4" poster="clip6.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
-      <figure><video src="clip7-s.mp4" data-quiet="clip7-s.mp4" data-loud="clip7.mp4" poster="clip7.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip1.mp4" poster="clip1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip2.mp4" poster="clip2.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip3.mp4" poster="clip3.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip4.mp4" poster="clip4.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip5.mp4" poster="clip5.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip6.mp4" poster="clip6.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
+      <figure><video src="clip7.mp4" poster="clip7.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
       </div>
       <button class="rnav prev" type="button" aria-label="Précédent / Previous">‹</button>
       <button class="rnav next" type="button" aria-label="Suivant / Next">›</button>
@@ -971,7 +995,10 @@ function renderDates(){
   if(canAnim){
     const copy=()=>base.map(f=>{ const c=f.cloneNode(true); c.setAttribute("aria-hidden","true"); c.querySelectorAll("button").forEach(b=>b.tabIndex=-1); return c; });
     track=document.createElement("div"); track.className="rtrack";
-    track.append(...base,...copy(),...copy());   /* three identical sets so the loop is seamless */
+    /* only as many identical sets as needed to keep the loop seamless on this screen (fewer video players = less work for the phone) */
+    const setW=n*(Math.min(270,Math.max(200,innerWidth*.24))+14), need=Math.max(innerWidth,screen.width||0,screen.height||0);
+    const extra=Math.max(1,Math.ceil(need/setW));
+    track.append(...base); for(let k=0;k<extra;k++) track.append(...copy());
     rail.append(track); rail.classList.add("x");
   }
   const figs=[...rail.querySelectorAll("figure")], vids=figs.map(f=>f.querySelector("video"));
@@ -988,7 +1015,7 @@ function renderDates(){
     vids.forEach(v=>{ hookVideo(v); io.observe(v); });
   }
   if("IntersectionObserver" in window){  /* clips about to slide in start buffering a little early, so they play without a stall */
-    const pre=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ giveSrc(e.target); if(e.target.preload!=="auto") e.target.preload="auto"; } }),{rootMargin:"800px 420px 800px 420px"});
+    const pre=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ giveSrc(e.target); if(e.target.preload!=="auto") e.target.preload="auto"; } }),{rootMargin:"500px 300px 500px 300px"});
     vids.forEach(v=>pre.observe(v));
   }
   /* spotlight: click a clip -> it plays with sound, glides to the middle, the others blur + dim, the page darkens */
@@ -1040,7 +1067,10 @@ function renderDates(){
   rail.addEventListener("wheel",touchPause,{passive:true});
 
   /* speed: eased towards the wanted rate (1 = normal; ~0.1 near the middle of the strip under the mouse; 0 while dragging, listening or just touched) */
+  let onScreen=true, looping=false;
+  if("IntersectionObserver" in window){ new IntersectionObserver(es=>es.forEach(e=>{ onScreen=e.isIntersecting; if(!onScreen){ if(anim.playState==="running") anim.pause(); } else if(!looping){ looping=true; last=performance.now(); requestAnimationFrame(loop); } }),{rootMargin:"200px 0px"}).observe(rail); }
   function loop(now){
+    if(!onScreen){ looping=false; return; }
     const dt=Math.min(.05,(now-last)/1000); last=now;
     let t=1;
     if(hover){ const a=Math.abs(hx-.5)*2; t=.1+.9*Math.min(1,a/.8); }
@@ -1051,7 +1081,7 @@ function renderDates(){
     else{ if(anim.playbackRate!==rate) anim.playbackRate=rate; if(anim.playState!=="running") anim.play(); }
     requestAnimationFrame(loop);
   }
-  requestAnimationFrame(loop);
+  looping=true; requestAnimationFrame(loop);
 
   const step=()=>figs[0].getBoundingClientRect().width+14;
   function nudge(dir){
@@ -1089,8 +1119,15 @@ function renderDates(){
     const jr=j.getBoundingClientRect(); if(!jr.width) return;
     const c=nodes.map(nd=>{ const r=nd.getBoundingClientRect(); return [r.left-jr.left+r.width/2, r.top-jr.top+r.height/2]; });
     const a=c[0], m=c[1], e=c[2];
-    const chord=Math.hypot(e[0]-a[0],e[1]-a[1]), sag=Math.max(8,m[0]-(a[0]+e[0])/2), r=(chord*chord/4+sag*sag)/(2*sag);
-    const d=`M${a[0].toFixed(1)} ${a[1].toFixed(1)} A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${e[0].toFixed(1)} ${e[1].toFixed(1)}`;
+    let d;
+    if(m[0] < (a[0]+e[0])/2 - 8){
+      /* middle bubble on the left: two mirrored curves through it, vertical where they meet so the bend is smooth */
+      const f=v=>v.toFixed(1), h1=(m[1]-a[1])*.85, h2=(e[1]-m[1])*.85;
+      d=`M${f(a[0])} ${f(a[1])} C${f(a[0])} ${f(a[1]+h1)} ${f(m[0])} ${f(m[1]-h1)} ${f(m[0])} ${f(m[1])} C${f(m[0])} ${f(m[1]+h2)} ${f(e[0])} ${f(e[1]-h2)} ${f(e[0])} ${f(e[1])}`;
+    } else {
+      const chord=Math.hypot(e[0]-a[0],e[1]-a[1]), sag=Math.max(8,m[0]-(a[0]+e[0])/2), r=(chord*chord/4+sag*sag)/(2*sag);
+      d=`M${a[0].toFixed(1)} ${a[1].toFixed(1)} A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${e[0].toFixed(1)} ${e[1].toFixed(1)}`;
+    }
     svg.setAttribute("viewBox",`0 0 ${jr.width} ${jr.height}`); base.setAttribute("d",d); draw.setAttribute("d",d);
   }
   layout(); addEventListener("resize",layout); addEventListener("load",layout);
@@ -1202,7 +1239,7 @@ const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
 /* blurred night-out loop behind the opener: portrait on phones, landscape on wide screens */
 (function(){
   var v=document.getElementById("bg"), p=document.getElementById("poster");
-  if(!v||!p) return;
+  if(!v||!p||window.__bgStarted) return;
   var kind=window.matchMedia("(max-width: 820px), (orientation: portrait)").matches?"mobile":"desktop";
   p.style.backgroundImage="url("+M("bg-"+kind+".jpg")+")";
   if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
