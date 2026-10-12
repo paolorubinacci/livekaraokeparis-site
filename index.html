@@ -1326,16 +1326,17 @@ const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
   addEventListener("scroll",()=>{ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } },{passive:true});
   bg.addEventListener("click",()=>{setPeek(false);setOpen(!open)});
   /* language peek on the collapsed pill */
-  let peek=false, peekT=0, peekY=0;
-  function setPeek(v){ if(v===peek) return; peek=v; nav.classList.toggle("peek",v); clearTimeout(peekT); if(v){ peekY=scrollY; peekT=setTimeout(()=>setPeek(false),6000); } if(!open) squish(); }
+  let peek=false, peekY=0, calmUntil=0;
+  function setPeek(v){ if(v===peek) return; peek=v; nav.classList.toggle("peek",v); if(v) peekY=scrollY; if(!open) squish(); }
   pill.addEventListener("click",e=>{
     if(!scrolled||open||innerWidth>760) return;
     if(e.target.closest("a,button")) return;
     setPeek(!peek);
   });
-  nav.querySelectorAll(".mlang button").forEach(b=>b.addEventListener("click",()=>{ if(peek) setTimeout(()=>setPeek(false),450); }));
+  /* after switching language the switch stays open; the text reflow can nudge the page, so the next real scroll is what folds it */
+  nav.querySelectorAll(".mlang button").forEach(b=>b.addEventListener("click",()=>{ if(!peek) return; calmUntil=performance.now()+600; requestAnimationFrame(()=>{ peekY=scrollY; }); setTimeout(()=>{ peekY=scrollY; },600); }));
   document.addEventListener("click",e=>{ if(peek && !pill.contains(e.target)) setPeek(false); });
-  addEventListener("scroll",()=>{ if(peek && Math.abs(scrollY-peekY)>80) setPeek(false); },{passive:true});
+  addEventListener("scroll",()=>{ if(!peek) return; if(performance.now()<calmUntil){ peekY=scrollY; return; } if(Math.abs(scrollY-peekY)>12) setPeek(false); },{passive:true});
   scrim.addEventListener("click",()=>setOpen(false));
   menu.querySelectorAll("a.ml").forEach(a=>a.addEventListener("click",()=>setOpen(false)));
   nav.querySelectorAll(".mctl .cta").forEach(a=>a.addEventListener("click",()=>setOpen(false)));
