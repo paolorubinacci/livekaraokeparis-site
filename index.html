@@ -592,41 +592,37 @@ form .btn.sub:disabled{cursor:default}
   .hero .fact>i{transition:background 0s .55s}
   .hero .fact:hover>i{background:transparent;transition:none}
 }
-/* ---- v30: contact = one panel; photo + next steps on the left, form on the right (stacked on phones) ---- */
-.contact{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin-top:44px;background:var(--night);border:1px solid var(--line);border-radius:28px;overflow:hidden;align-items:stretch;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
-.contact .direct{position:relative;display:flex;flex-direction:column;justify-content:flex-end;gap:0;min-width:0;padding:clamp(22px,4vw,40px);min-height:320px;isolation:isolate;overflow:hidden}
-.contact .direct .ph{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 38%;z-index:-2}
-.contact .direct::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,19,40,.28) 0%,rgba(14,19,40,.7) 42%,rgba(14,19,40,.94) 70%,var(--deep) 100%)}
-.contact .dtxt{display:flex;flex-direction:column;gap:14px;min-width:0}
+/* ---- v31: contact = one compact panel over a soft-focus crowd photo; title on the left, form on the right (stacked on phones) ---- */
+.contact{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin-top:44px;background:var(--deep);border:1px solid var(--line);border-radius:28px;align-items:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.contact>.ph{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 55%;z-index:-2;transform:scale(1.04)}
+.contact::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(14,19,40,.3) 0%,rgba(14,19,40,.62) 22%,rgba(14,19,40,.86) 40%,rgba(14,19,40,.9) 100%)}
+.contact .direct{display:flex;flex-direction:column;gap:10px;min-width:0;padding:26px 20px 4px}
 .contact .direct .eyebrow{color:var(--spot)}
-.contact .direct h3{font-family:var(--head);font-size:clamp(1.7rem,6.4vw,2.2rem);line-height:1.08;margin:0;text-wrap:balance}
-.contact .direct p{color:rgba(243,240,251,.84);margin:0;max-width:42ch}
-.next{list-style:none;margin:8px 0 0;padding:16px 0 0;border-top:1px solid var(--line);display:grid;gap:14px;counter-reset:n}
-.next li{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:13px;row-gap:1px;counter-increment:n}
-.next li::before{content:counter(n);grid-row:1/3;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:700 .86rem/1 var(--head);padding-top:2px;box-sizing:border-box;color:var(--deep);background:var(--lilac)}
-.next b{font-family:var(--head);font-weight:600;font-size:1.04rem;color:var(--ink);line-height:1.25;padding-top:5px}
-.next small{color:var(--muted);font-size:.86rem;line-height:1.45}
-.contact form{background:transparent;border-radius:0;padding:clamp(22px,4vw,40px)}
+.contact .direct h3{text-shadow:0 2px 18px rgba(14,19,40,.6);font-family:var(--head);font-size:clamp(1.7rem,7vw,2.1rem);line-height:1.06;margin:0;text-wrap:balance}
+.contact .direct p{color:rgba(243,240,251,.82);margin:0;max-width:34ch;font-size:.95rem;line-height:1.5}
+.contact form{background:transparent;border-radius:0;padding:16px 20px 22px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.contact form .full,.contact form .c,.contact form .fmt,.contact #out{grid-column:1/-1}
+.contact form .m{grid-column:auto}
+.contact input,.contact select{min-height:46px}
+.contact textarea{min-height:74px}
+.contact .seg button{letter-spacing:.07em;padding-inline:4px}
+.contact #fmsg{margin-top:8px}
+.contact #fmsg:empty{display:none}
 @media (min-width:821px){
-  .contact{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
-  .contact .direct{min-height:0}
-  .contact .direct::after{background:linear-gradient(180deg,rgba(14,19,40,.18) 0%,rgba(14,19,40,.55) 34%,rgba(14,19,40,.9) 58%,var(--deep) 100%)}
-  .contact form{align-content:start;border-left:1px solid var(--line)}
+  .contact{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);margin-top:56px}
+  .contact::after{background:linear-gradient(90deg,rgba(14,19,40,.28) 0%,rgba(14,19,40,.55) 30%,rgba(14,19,40,.86) 46%,rgba(14,19,40,.9) 100%)}
+  .contact>.ph{width:56%;right:auto;object-position:50% 56%;transform:none;-webkit-mask-image:linear-gradient(90deg,#000 45%,transparent 100%);mask-image:linear-gradient(90deg,#000 45%,transparent 100%)}
+  .contact .direct{padding:36px 8px 36px 40px;gap:12px}
+  .contact .direct h3{font-size:clamp(2rem,3vw,2.6rem)}
+  .contact .direct p{font-size:1rem}
+  .contact form{padding:32px 36px 30px;gap:14px}
+  .contact .seg button{letter-spacing:.12em}
 }
-@media (min-width:1000px){
-  .contact{margin-top:64px}
-  .contact .direct,.contact form{padding:clamp(36px,3.6vw,52px)}
-  .contact .direct h3{font-size:clamp(2rem,2.6vw,2.6rem)}
-}
-@media (max-width:520px){
-  .contact{margin-top:32px;border-radius:24px}
-  .contact .direct{padding:150px 20px 22px;min-height:0}
-  .contact .direct{background:var(--deep)}
-  .contact .direct .ph{bottom:auto;height:330px;object-position:50% 58%}
-  .contact .direct::after{background:linear-gradient(180deg,rgba(14,19,40,.0) 0%,rgba(14,19,40,.35) 70px,rgba(14,19,40,.85) 190px,var(--deep) 330px)}
-  .contact form{padding:10px 20px 24px}
-  .contact .seg button{letter-spacing:.07em;padding-inline:4px}
-  .next{gap:12px}
+@media (min-width:1100px){
+  .contact form{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .contact form .c,.contact form .fmt{grid-column:auto}
+  .contact .direct{padding-left:52px}
+  .contact form{padding:36px 44px 32px 32px}
 }
 </style>
 </head>
@@ -727,7 +723,7 @@ form .btn.sub:disabled{cursor:default}
         <svg class="jpath" aria-hidden="true"><defs><linearGradient id="jgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#ffbf73"/></linearGradient></defs><path class="base"/><path class="draw" pathLength="1"/></svg>
         <div class="stop a" style="--d:0s"><p><b>Cité U</b><small><span lang="fr">Là où tout a commencé</span><span lang="en">Where it all began</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2.5 9 2.5 12 0v-5"/></svg></i></div>
         <div class="stop b" style="--d:.95s"><p><b><span lang="fr">Bars de Paris</span><span lang="en">Paris bars</span></b><small><span lang="fr">Là où on joue aujourd'hui</span><span lang="en">Where we play today</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M5 4h14l-7 8-7-8z"/><path d="M12 12v8M8 20h8"/></svg></i></div>
-        <a class="stop c" href="#contact" style="--d:1.9s"><p><b><span lang="fr">Votre événement</span><span lang="en">Your event</span></b><small><span lang="fr">À votre tour</span><span lang="en">Your turn</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="m4 20 4-12 8 8-12 4z"/><path d="M14 4v2M19 9h2M17 6l1.5-1.5M10 4l.5 1.5"/></svg></i></a>
+        <a class="stop c" href="#contact" style="--d:1.9s"><p><b><span lang="fr">Votre événement</span><span lang="en">Your event</span></b><small><span lang="fr">Là où on jouera demain</span><span lang="en">Where we play next</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="m4 20 4-12 8 8-12 4z"/><path d="M14 4v2M19 9h2M17 6l1.5-1.5M10 4l.5 1.5"/></svg></i></a>
       </div>
     </div>
   </section>
@@ -828,18 +824,11 @@ form .btn.sub:disabled{cursor:default}
       </div>
 
       <div class="contact" id="contact">
+        <img class="ph" src="contact.jpg" alt="" loading="lazy" decoding="async" width="720" height="1280">
         <div class="direct">
-          <img class="ph" src="contact.jpg" alt="" loading="lazy" decoding="async" width="720" height="1280">
-          <div class="dtxt">
-            <span class="eyebrow"><span lang="fr">Contact</span><span lang="en">Contact</span></span>
-            <h3><span lang="fr">Parlons de votre date</span><span lang="en">Let's talk about your date</span></h3>
-            <p><span lang="fr">Bar, anniversaire, fête de diplôme, mariage, soirée d'entreprise : dites-nous ce que vous imaginez, on revient vers vous avec une proposition sur mesure.</span><span lang="en">Bar, birthday, graduation party, wedding, company night: tell us what you have in mind and we'll come back to you with a tailored proposal.</span></p>
-            <ol class="next">
-              <li><b><span lang="fr">Vous nous écrivez</span><span lang="en">You write to us</span></b><small><span lang="fr">Le lieu, la date, le nombre d'invités : quelques infos suffisent.</span><span lang="en">Venue, date, number of guests: a few details are enough.</span></small></li>
-              <li><b><span lang="fr">On vous conseille</span><span lang="en">We advise you</span></b><small><span lang="fr">La formule adaptée à votre lieu et à votre budget.</span><span lang="en">The set-up that fits your venue and budget.</span></small></li>
-              <li><b><span lang="fr">On fixe la date</span><span lang="en">We lock in the date</span></b><small><span lang="fr">Groupe, chansons et animation : on s'occupe du reste.</span><span lang="en">Band, songs and hosting: we handle the rest.</span></small></li>
-            </ol>
-          </div>
+          <span class="eyebrow">Contact</span>
+          <h3><span lang="fr">Parlons de votre événement</span><span lang="en">Let's talk about your event</span></h3>
+          <p><span lang="fr">Faire vibrer votre bar, une soirée privée ou un mariage ? Écrivez-nous, on revient vers vous avec une proposition sur mesure.</span><span lang="en">Want to light up your venue, a private party or a wedding? Write to us and we'll come back with a tailored proposal.</span></p>
         </div>
         <form id="bookForm" novalidate>
           <div class="full">
@@ -850,17 +839,17 @@ form .btn.sub:disabled{cursor:default}
           </div>
           <label class="m" for="f-name"><span lang="fr">Nom</span><span lang="en">Name</span><input id="f-name" autocomplete="name"></label>
           <label class="m" for="f-venue"><span lang="fr" id="venueFr">Nom du bar</span><span lang="en" id="venueEn">Venue name</span><input id="f-venue"></label>
-          <label class="full m" for="f-contact"><span lang="fr">E-mail ou téléphone</span><span lang="en">E-mail or phone</span><input id="f-contact" autocomplete="email" inputmode="email"></label>
+          <label class="c" for="f-contact"><span lang="fr">E-mail ou téléphone</span><span lang="en">E-mail or phone</span><input id="f-contact" autocomplete="email" inputmode="email"></label>
           <label for="f-date"><span lang="fr">Date</span><span lang="en">Date</span><input id="f-date" placeholder="14 / 11" autocomplete="off"></label>
           <label for="f-guests"><span lang="fr">Invités</span><span lang="en">Guests</span><input id="f-guests" inputmode="numeric" placeholder="80"></label>
-          <label class="full" for="f-fmt"><span lang="fr">Formule souhaitée</span><span lang="en">Preferred set-up</span>
+          <label class="fmt" for="f-fmt"><span lang="fr">Formule souhaitée</span><span lang="en">Preferred set-up</span>
             <select id="f-fmt">
               <option value="" data-fr="Je ne sais pas encore, conseillez-moi" data-en="Not sure yet, advise me">Je ne sais pas encore</option>
               <option value="duo" data-fr="Duo (2 musiciens)" data-en="Duo (2 musicians)">Duo</option>
               <option value="trio" data-fr="Trio" data-en="Trio">Trio</option>
               <option value="band" data-fr="Groupe complet" data-en="Full band">Groupe complet</option>
             </select></label>
-          <label class="full" for="f-msg"><span lang="fr">Message</span><span lang="en">Message</span><textarea id="f-msg" rows="4" placeholder=""></textarea></label>
+          <label class="full" for="f-msg"><span lang="fr">Message</span><span lang="en">Message</span><textarea id="f-msg" rows="2" placeholder=""></textarea></label>
           <div class="full"><button class="btn primary sub" type="submit"><span class="lbl" lang="fr">Envoyer</span><span class="lbl" lang="en">Send</span><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
             <p id="fmsg" role="status" aria-live="polite"></p></div>
           <div id="out" hidden>
