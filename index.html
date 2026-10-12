@@ -703,7 +703,13 @@ form .btn.sub:disabled{cursor:default}
   var k=matchMedia("(max-width: 820px), (orientation: portrait)").matches?"mobile":"desktop",s=false;
   function show(){if(s)return;s=true;v.classList.add("on");}
   v.addEventListener("playing",function(){if(v.requestVideoFrameCallback)v.requestVideoFrameCallback(function(){show();});setTimeout(show,400);});
-  v.poster="bg-"+k+".jpg";v.src="bg-"+k+".mp4";window.__bgStarted=1;var p=v.play();if(p&&p.catch)p.catch(function(){});})();</script>
+  v.poster="bg-"+k+".jpg";v.src="bg-"+k+".mp4";window.__bgStarted=1;var p=v.play();if(p&&p.catch)p.catch(function(){});
+  /* keep the loop alive: phones pause background videos that leave the screen and do not always restart them, so pause it ourselves while it is out of view and play it again as soon as the opener is back (also after switching apps) */
+  var sec=v.parentNode,vis=true;function go(){if(vis&&v.paused&&!document.hidden){var q=v.play();if(q&&q.catch)q.catch(function(){});}}
+  if("IntersectionObserver" in window)new IntersectionObserver(function(es){vis=es[0].isIntersecting;if(vis)go();else if(!v.paused)v.pause();},{threshold:0}).observe(sec);
+  document.addEventListener("visibilitychange",go);window.addEventListener("pageshow",go);window.addEventListener("focus",go);
+  v.addEventListener("pause",function(){if(vis&&!document.hidden)setTimeout(go,150);});
+  window.addEventListener("scroll",function(){if(vis&&v.paused)go();},{passive:true});})();</script>
   <div class="inner">
     <img class="big" src="logo.png" alt="Live Karaoke Paris">
     <div class="under">
