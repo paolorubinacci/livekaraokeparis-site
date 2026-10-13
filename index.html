@@ -66,7 +66,7 @@ p{margin:0}
 section{padding-block:clamp(32px,8vw,140px)}
 .lede{color:var(--muted);max-width:56ch;font-size:clamp(1.05rem,1.6vw,1.22rem)}
 
-html[data-lang="fr"] [lang="en"], html[data-lang="en"] [lang="fr"]{display:none!important}
+html[data-lang="fr"] [lang="en"],html[data-lang="fr"] [lang="it"],html[data-lang="en"] [lang="fr"],html[data-lang="en"] [lang="it"],html[data-lang="it"] [lang="fr"],html[data-lang="it"] [lang="en"]{display:none!important}
 
 
 /* full-screen opener */
@@ -597,8 +597,8 @@ form .btn.sub:disabled{cursor:default}
   .hero .copy>.facts{grid-column:1 / -1;grid-row:5;align-self:end;margin-top:18px;grid-template-columns:repeat(4,minmax(0,264px))!important;max-width:none!important;justify-content:start!important;gap:12px!important}
   .hero .art{grid-column:2;grid-row:2 / 6;align-self:start;margin-top:26px;z-index:2}
   .hero .copy>h1,.hero .copy>.facts{position:relative;z-index:4}
-  html[data-lang="fr"] .hero h1 br.fb{display:inline}
-  html[data-lang="fr"] .hero h1{white-space:nowrap}
+  html[data-lang="fr"] .hero h1 br.fb{display:inline}html[data-lang="it"] .hero h1 br.fb{display:inline}
+  html[data-lang="fr"] .hero h1{white-space:nowrap}html[data-lang="it"] .hero h1{white-space:nowrap}
 }
 /* tiles rise to the eyebrow line, and sit above the four facts */
 .hero .yt{display:inline}
@@ -689,7 +689,7 @@ form .btn.sub:disabled{cursor:default}
 @media (max-width:760px){
   nav.top.scrolled .navpill{cursor:pointer}
   nav.top.scrolled.peek:not(.open) .navpill{max-width:min(360px,calc(100% - 28px))}
-  nav.top.scrolled.peek:not(.open) .mlang{opacity:1;pointer-events:auto;max-width:120px;margin-right:4px;transform:none;overflow:visible}
+  nav.top.scrolled.peek:not(.open) .mlang{opacity:1;pointer-events:auto;max-width:170px;margin-right:4px;transform:none;overflow:visible}
   nav.top.scrolled.peek .mlang button{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.28);color:rgba(243,240,251,.85)}
   nav.top.scrolled.peek .mlang button[aria-pressed="true"]{border-color:var(--lilac);background:rgba(196,181,253,.2);color:var(--ink)}
 }
@@ -727,13 +727,13 @@ form .btn.sub:disabled{cursor:default}
   <div class="inner">
     <img class="big" src="logo.png" alt="Live Karaoke Paris">
     <div class="under">
-    <p class="tag1"><span lang="fr">Le karaoké avec un <b>vrai groupe live</b>. Toi au micro, Paris au refrain.</span><span lang="en">Karaoke with a <b>real live band</b>. You on the mic, Paris on the chorus.</span></p>
+    <p class="tag1"><span lang="fr">Le karaoké avec un <b>vrai groupe live</b>. Toi au micro, Paris au refrain.</span><span lang="en">Karaoke with a <b>real live band</b>. You on the mic, Paris on the chorus.</span><span lang="it">Il karaoke con una <b>vera band dal vivo</b>. Tu al microfono, Parigi al ritornello.</span></p>
     <div class="ctas">
-      <a class="cta-big intro-cta" href="#dates"><span class="lbl"><span lang="fr">Prochaines dates</span><span lang="en">Upcoming dates</span></span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+      <a class="cta-big intro-cta" href="#dates"><span class="lbl"><span lang="fr">Prochaines dates</span><span lang="en">Upcoming dates</span><span lang="it">Prossime date</span></span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
     </div>
     </div>
   </div>
-  <a class="cue" href="#top"><span lang="fr">Découvrir</span><span lang="en">Discover</span><i></i></a>
+  <a class="cue" href="#top"><span lang="fr">Découvrir</span><span lang="en">Discover</span><span lang="it">Scopri</span><i></i></a>
 </section>
 
 <nav class="top" id="nav" aria-label="Menu principal / Main menu">
@@ -743,17 +743,17 @@ form .btn.sub:disabled{cursor:default}
       <a class="logo" href="#top" aria-label="Live Karaoke Paris"><img class="lg-full" src="logo.png" alt="Live Karaoke Paris"><img class="lg-mark" src="logo-mark.png" alt=""></a>
       <div class="links">
         <div class="pills">
-          <a href="#histoire"><span lang="fr">Notre histoire</span><span lang="en">Our story</span></a>
-          <a href="#format"><span lang="fr">Le concept</span><span lang="en">How it works</span></a>
-          <a href="#ambiance"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span></a>
+          <a href="#histoire"><span lang="fr">Notre histoire</span><span lang="en">Our story</span><span lang="it">La nostra storia</span></a>
+          <a href="#format"><span lang="fr">Le concept</span><span lang="en">How it works</span><span lang="it">Il concept</span></a>
+          <a href="#ambiance"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span><span lang="it">L'atmosfera</span></a>
           <a href="#dates">Dates</a>
           <a href="#musiciens">Work with us</a>
         </div>
         <a class="btn primary small cta" href="#booker">Book</a>
-        <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+        <div class="lang" role="group" aria-label="Langue / Language / Lingua"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="it">IT</button></div>
       </div>
       <div class="mctl">
-        <div class="lang mlang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+        <div class="lang mlang" role="group" aria-label="Langue / Language / Lingua"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="it">IT</button></div>
         <a class="btn primary small cta" href="#booker">Book</a>
         <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
       </div>
@@ -762,15 +762,15 @@ form .btn.sub:disabled{cursor:default}
       <div class="menuin">
         <ul>
           <li style="--i:0"><a class="ml hot" href="#booker"><small>01</small><span>Book</span><em>→</em></a></li>
-          <li style="--i:1"><a class="ml" href="#histoire"><small>02</small><span><span lang="fr">Notre histoire</span><span lang="en">Our story</span></span><em>→</em></a></li>
-          <li style="--i:2"><a class="ml" href="#format"><small>03</small><span><span lang="fr">Le concept</span><span lang="en">How it works</span></span><em>→</em></a></li>
-          <li style="--i:3"><a class="ml" href="#ambiance"><small>04</small><span><span lang="fr">L'ambiance</span><span lang="en">The vibe</span></span><em>→</em></a></li>
+          <li style="--i:1"><a class="ml" href="#histoire"><small>02</small><span><span lang="fr">Notre histoire</span><span lang="en">Our story</span><span lang="it">La nostra storia</span></span><em>→</em></a></li>
+          <li style="--i:2"><a class="ml" href="#format"><small>03</small><span><span lang="fr">Le concept</span><span lang="en">How it works</span><span lang="it">Il concept</span></span><em>→</em></a></li>
+          <li style="--i:3"><a class="ml" href="#ambiance"><small>04</small><span><span lang="fr">L'ambiance</span><span lang="en">The vibe</span><span lang="it">L'atmosfera</span></span><em>→</em></a></li>
           <li style="--i:4"><a class="ml" href="#dates"><small>05</small><span>Dates</span><em>→</em></a></li>
           <li style="--i:5"><a class="ml" href="#musiciens"><small>06</small><span>Work with us</span><em>→</em></a></li>
         </ul>
         <div class="menufoot">
-          <div class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
-          <span class="tagline"><span lang="fr">Paris · Groupe live</span><span lang="en">Paris · Live band</span></span>
+          <div class="lang" role="group" aria-label="Langue / Language / Lingua"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="it">IT</button></div>
+          <span class="tagline"><span lang="fr">Paris · Groupe live</span><span lang="en">Paris · Live band</span><span lang="it">Parigi · Band dal vivo</span></span>
         </div>
       </div>
     </div>
@@ -780,18 +780,18 @@ form .btn.sub:disabled{cursor:default}
 <main class="wrap" id="top">
   <header class="hero">
     <div class="copy">
-      <span class="eyebrow"><span lang="fr">Karaoké avec groupe live · Paris</span><span lang="en">Live band karaoke · Paris</span></span>
-      <h1><span lang="fr">Prends le micro.<br class="fb"><br class="mb"> <span class="ln">Le groupe<br class="fb"> te suit,</span><br class="mb"> en <span class="script">live!</span></span><span lang="en">Grab the mic.<br class="mb"> <span class="ln">The band plays</span><br class="mb"> it <span class="script">live!</span></span></h1>
-      <p class="lede"><span lang="fr">Pas de <span class="yt">vidéo YouTube, pas de </span>bande-son : <b>un vrai groupe sur scène</b> qui joue ta chanson pendant que tu chantes, et <b>toute la salle</b> qui reprend le refrain avec toi.</span><span lang="en">No YouTube backing track. <b>A real band on stage</b> plays your song while you sing it, and <b>the whole room</b> joins in on the chorus.</span></p>
+      <span class="eyebrow"><span lang="fr">Karaoké avec groupe live · Paris</span><span lang="en">Live band karaoke · Paris</span><span lang="it">Karaoke con band dal vivo · Parigi</span></span>
+      <h1><span lang="fr">Prends le micro.<br class="fb"><br class="mb"> <span class="ln">Le groupe<br class="fb"> te suit,</span><br class="mb"> en <span class="script">live!</span></span><span lang="en">Grab the mic.<br class="mb"> <span class="ln">The band plays</span><br class="mb"> it <span class="script">live!</span></span><span lang="it">Prendi il micro.<br class="fb"><br class="mb"> <span class="ln">La band<br class="fb"> ti segue</span><br class="mb"> <span class="script">live!</span></span></h1>
+      <p class="lede"><span lang="fr">Pas de <span class="yt">vidéo YouTube, pas de </span>bande-son : <b>un vrai groupe sur scène</b> qui joue ta chanson pendant que tu chantes, et <b>toute la salle</b> qui reprend le refrain avec toi.</span><span lang="en">No YouTube backing track. <b>A real band on stage</b> plays your song while you sing it, and <b>the whole room</b> joins in on the chorus.</span><span lang="it">Niente video di YouTube né basi registrate: <b>una vera band sul palco</b> suona la tua canzone mentre canti, e <b>tutta la sala</b> canta con te il ritornello.</span></p>
       <div class="ctas">
         <a class="cta-big" href="#booker"><span class="lbl">Book</span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
-        <span class="cta-sub"><span lang="fr">Bars · Soirées étudiantes · Événements privés &amp; corporate</span><span lang="en">Bars · Student parties · Private &amp; corporate events</span></span>
+        <span class="cta-sub"><span lang="fr">Bars · Soirées étudiantes · Événements privés &amp; corporate</span><span lang="en">Bars · Student parties · Private &amp; corporate events</span><span lang="it">Bar · Feste studentesche · Eventi privati e aziendali</span></span>
       </div>
       <div class="facts">
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span></p><div class="more" aria-hidden="true"><span lang="fr">Pop · Disco 80s · Rock · Soul · Latino · Disney</span><span lang="en">Pop · 80s disco · Rock · Soul · Latin · Disney</span></div></div>
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span></p><div class="more" aria-hidden="true"><span lang="fr">Anglais · Français · Espagnol · Italien · Arabe</span><span lang="en">English · Français · Español · Italiano · العربية</span></div></div>
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span></p><div class="more" aria-hidden="true"><span lang="fr">Claviers · guitare · basse · batterie</span><span lang="en">Keys · guitar · bass · drums</span></div></div>
-        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span></p><div class="more" aria-hidden="true"><span lang="fr">On adapte le format à votre lieu</span><span lang="en">We adapt the format to your venue</span></div></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span><span lang="it">canzoni</span></p><div class="more" aria-hidden="true"><span lang="fr">Pop · Disco 80s · Rock · Soul · Latino · Disney</span><span lang="en">Pop · 80s disco · Rock · Soul · Latin · Disney</span><span lang="it">Pop · Disco anni '80 · Rock · Soul · Latino · Disney</span></div></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span><span lang="it">lingue</span></p><div class="more" aria-hidden="true"><span lang="fr">Anglais · Français · Espagnol · Italien · Arabe</span><span lang="en">English · Français · Español · Italiano · العربية</span><span lang="it">English · Français · Español · Italiano · العربية</span></div></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span><span lang="it">live</span></p><div class="more" aria-hidden="true"><span lang="fr">Claviers · guitare · basse · batterie</span><span lang="en">Keys · guitar · bass · drums</span><span lang="it">Tastiere · chitarra · basso · batteria</span></div></div>
+        <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span><span lang="it">Chiavi in mano</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span><span lang="it">band, canzoni e presentatore</span></p><div class="more" aria-hidden="true"><span lang="fr">On adapte le format à votre lieu</span><span lang="en">We adapt the format to your venue</span><span lang="it">Adattiamo il format al tuo locale</span></div></div>
       </div>
     </div>
     <div class="art"><a class="a1" href="#ambiance" data-clip="0" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" data-clip="3" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" data-clip="4" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
@@ -805,53 +805,53 @@ form .btn.sub:disabled{cursor:default}
 <main class="wrap">
   <section class="story" id="histoire">
     <div class="txt">
-      <span class="eyebrow"><span lang="fr">Notre histoire</span><span lang="en">Our story</span></span>
-      <h2><span lang="fr">Né à la Cité U, adopté par Paris</span><span lang="en">Born at the Cité U, adopted by Paris</span></h2>
+      <span class="eyebrow"><span lang="fr">Notre histoire</span><span lang="en">Our story</span><span lang="it">La nostra storia</span></span>
+      <h2><span lang="fr">Né à la Cité U, adopté par Paris</span><span lang="en">Born at the Cité U, adopted by Paris</span><span lang="it">Nato alla Cité U, adottato da Parigi</span></h2>
       <p lang="fr">Tout a commencé avec des <b>soirées étudiantes à la Cité internationale universitaire de Paris</b> : des étudiants venus du monde entier qui prenaient le micro, accompagnés par des musiciens. L'ambiance était telle qu'on en a fait un format.</p>
-      <p lang="en">It all started with <b>student nights at the Cité internationale universitaire de Paris</b>: students from all over the world taking the mic, backed by live musicians. The energy was so good we turned it into a format.</p>
+      <p lang="en">It all started with <b>student nights at the Cité internationale universitaire de Paris</b>: students from all over the world taking the mic, backed by live musicians. The energy was so good we turned it into a format.</p><p lang="it">Tutto è cominciato con delle <b>serate studentesche alla Cité internationale universitaire de Paris</b>: studenti da tutto il mondo che prendevano il microfono, accompagnati da musicisti dal vivo. L'energia era così bella che ne abbiamo fatto un format.</p>
       <p lang="fr">Aujourd'hui, <b>Live Karaoke Paris</b> fait chanter les bars parisiens avec des musiciens professionnels et un public <b>international, à l'image de Paris</b>.</p>
-      <p lang="en">Today, <b>Live Karaoke Paris</b> gets Paris bars singing, with professional musicians and a crowd as <b>international as Paris itself</b>.</p>
+      <p lang="en">Today, <b>Live Karaoke Paris</b> gets Paris bars singing, with professional musicians and a crowd as <b>international as Paris itself</b>.</p><p lang="it">Oggi <b>Live Karaoke Paris</b> fa cantare i bar di Parigi, con musicisti professionisti e un pubblico <b>internazionale, come Parigi</b>.</p>
       <div class="journey" id="journey">
         <svg class="jpath" aria-hidden="true"><defs><linearGradient id="jgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#ffbf73"/></linearGradient></defs><path class="base"/><path class="draw" pathLength="1"/></svg>
-        <div class="stop a" style="--d:0s"><p><b>Cité U</b><small><span lang="fr">Là où tout a commencé</span><span lang="en">Where it all began</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2.5 9 2.5 12 0v-5"/></svg></i></div>
-        <div class="stop b" style="--d:.95s"><p><b><span lang="fr">Bars de Paris</span><span lang="en">Paris bars</span></b><small><span lang="fr">Là où on joue aujourd'hui</span><span lang="en">Where we play today</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M5 4h14l-7 8-7-8z"/><path d="M12 12v8M8 20h8"/></svg></i></div>
-        <a class="stop c" href="#contact" style="--d:1.9s"><p><b><span lang="fr">Votre événement</span><span lang="en">Your event</span></b><small><span lang="fr">Prochaine étape : chez vous</span><span lang="en">Next stop: your place</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="m4 20 4-12 8 8-12 4z"/><path d="M14 4v2M19 9h2M17 6l1.5-1.5M10 4l.5 1.5"/></svg></i></a>
+        <div class="stop a" style="--d:0s"><p><b>Cité U</b><small><span lang="fr">Là où tout a commencé</span><span lang="en">Where it all began</span><span lang="it">Dove tutto è cominciato</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2.5 9 2.5 12 0v-5"/></svg></i></div>
+        <div class="stop b" style="--d:.95s"><p><b><span lang="fr">Bars de Paris</span><span lang="en">Paris bars</span><span lang="it">Bar di Parigi</span></b><small><span lang="fr">Là où on joue aujourd'hui</span><span lang="en">Where we play today</span><span lang="it">Dove suoniamo oggi</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="M5 4h14l-7 8-7-8z"/><path d="M12 12v8M8 20h8"/></svg></i></div>
+        <a class="stop c" href="#contact" style="--d:1.9s"><p><b><span lang="fr">Votre événement</span><span lang="en">Your event</span><span lang="it">Il tuo evento</span></b><small><span lang="fr">Prochaine étape : chez vous</span><span lang="en">Next stop: your place</span><span lang="it">Prossima tappa: da te</span></small></p><i class="node"><svg viewBox="0 0 24 24"><path d="m4 20 4-12 8 8-12 4z"/><path d="M14 4v2M19 9h2M17 6l1.5-1.5M10 4l.5 1.5"/></svg></i></a>
       </div>
     </div>
   </section>
 
   <section id="format">
-    <span class="eyebrow"><span lang="fr">Le concept</span><span lang="en">How it works</span></span>
-    <h2><span lang="fr">Trois étapes, zéro stress</span><span lang="en">Three steps, zero stress</span></h2>
+    <span class="eyebrow"><span lang="fr">Le concept</span><span lang="en">How it works</span><span lang="it">Il concept</span></span>
+    <h2><span lang="fr">Trois étapes, zéro stress</span><span lang="en">Three steps, zero stress</span><span lang="it">Tre passi, zero stress</span></h2>
     <div class="steps">
       <div class="step">
         <span class="n">1</span>
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
-        <h3><span lang="fr">Choisis ta chanson</span><span lang="en">Pick your song</span></h3>
+        <h3><span lang="fr">Choisis ta chanson</span><span lang="en">Pick your song</span><span lang="it">Scegli la tua canzone</span></h3>
         <p lang="fr">Scanne le <b>QR code</b> sur place et parcours la liste : pop, rock, soul, Disney, chansons françaises, italiennes, latinos, arabes…</p>
-        <p lang="en">Scan the <b>QR code</b> at the venue and browse the list: pop, rock, soul, Disney, plus French, Italian, Latin and Arabic songs.</p>
-        <a href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Voir la liste des chansons →</span><span lang="en">See the song list →</span></a>
+        <p lang="en">Scan the <b>QR code</b> at the venue and browse the list: pop, rock, soul, Disney, plus French, Italian, Latin and Arabic songs.</p><p lang="it">Scansiona il <b>QR code</b> sul posto e sfoglia la lista: pop, rock, soul, Disney, e poi canzoni francesi, italiane, latine e arabe.</p>
+        <a href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Voir la liste des chansons →</span><span lang="en">See the song list →</span><span lang="it">Vedi la lista delle canzoni →</span></a>
       </div>
       <div class="step">
         <span class="n">2</span>
         <div class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/></svg></div>
-        <h3><span lang="fr">Rejoins le groupe</span><span lang="en">Join the band</span></h3>
+        <h3><span lang="fr">Rejoins le groupe</span><span lang="en">Join the band</span><span lang="it">Entra nella band</span></h3>
         <p lang="fr">Quand c'est ton tour, <b>tu montes sur scène</b>. Le groupe lance ta chanson, <b>à ta tonalité</b>, et les paroles s'affichent sur ton téléphone.</p>
-        <p lang="en">When it's your turn, <b>you step on stage</b>. The band kicks off your song <b>in your key</b>, with the lyrics right on your phone.</p>
+        <p lang="en">When it's your turn, <b>you step on stage</b>. The band kicks off your song <b>in your key</b>, with the lyrics right on your phone.</p><p lang="it">Quando tocca a te, <b>sali sul palco</b>. La band attacca la tua canzone <b>nella tua tonalità</b>, con il testo direttamente sul telefono.</p>
       </div>
       <div class="step">
         <span class="n">3</span>
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <h3><span lang="fr">Toute la salle chante</span><span lang="en">The whole room sings</span></h3>
+        <h3><span lang="fr">Toute la salle chante</span><span lang="en">The whole room sings</span><span lang="it">Tutta la sala canta</span></h3>
         <p lang="fr">En deuxième partie de soirée, place aux <b>grands tubes que tout le monde connaît</b>. Le bar devient une <b>piste de danse</b>.</p>
-        <p lang="en">Later in the night it's all <b>the big anthems everyone knows</b>. The bar turns into a <b>dance floor</b>.</p>
+        <p lang="en">Later in the night it's all <b>the big anthems everyone knows</b>. The bar turns into a <b>dance floor</b>.</p><p lang="it">Più avanti nella serata arrivano <b>i grandi successi che tutti conoscono</b>. Il bar diventa una <b>pista da ballo</b>.</p>
       </div>
     </div>
   </section>
 
   <section id="ambiance">
-    <span class="eyebrow"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span></span>
-    <h2><span lang="fr">Une soirée Live Karaoke, en vrai</span><span lang="en">A Live Karaoke night, for real</span></h2>
+    <span class="eyebrow"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span><span lang="it">L'atmosfera</span></span>
+    <h2><span lang="fr">Une soirée Live Karaoke, en vrai</span><span lang="en">A Live Karaoke night, for real</span><span lang="it">Una vera serata di Live Karaoke</span></h2>
     <div class="reelwrap">
       <div class="reel" id="reel" tabindex="0" aria-label="Vidéos / Videos">
       <figure><video src="clip1.mp4" poster="clip1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
@@ -870,47 +870,47 @@ form .btn.sub:disabled{cursor:default}
   <section id="dates">
     <div class="dates-head">
       <div>
-        <span class="eyebrow"><span lang="fr">Calendrier</span><span lang="en">Calendar</span></span>
-        <h2><span lang="fr">Prochaines dates</span><span lang="en">Upcoming dates</span></h2>
-        <p class="lede" style="margin-top:12px"><span lang="fr">Viens nous voir en live pour avoir un <b>avant-goût de l'expérience</b>.</span><span lang="en">Come and see us live for a <b>taste of the experience</b>.</span></p>
+        <span class="eyebrow"><span lang="fr">Calendrier</span><span lang="en">Calendar</span><span lang="it">Calendario</span></span>
+        <h2><span lang="fr">Prochaines dates</span><span lang="en">Upcoming dates</span><span lang="it">Prossime date</span></h2>
+        <p class="lede" style="margin-top:12px"><span lang="fr">Viens nous voir en live pour avoir un <b>avant-goût de l'expérience</b>.</span><span lang="en">Come and see us live for a <b>taste of the experience</b>.</span><span lang="it">Vieni a trovarci dal vivo per <b>un assaggio dell'esperienza</b>.</span></p>
       </div>
-      <a class="btn ghost small" href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Préparer ma chanson</span><span lang="en">Pick my song in advance</span></a>
+      <a class="btn ghost small" href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Préparer ma chanson</span><span lang="en">Pick my song in advance</span><span lang="it">Scegli già la tua canzone</span></a>
     </div>
     <ul class="dates" id="dateList"></ul>
   </section>
 
   <section id="booker">
     <div class="book">
-      <span class="eyebrow"><span lang="fr">Booker le show</span><span lang="en">Book the show</span></span>
-      <h2><span lang="fr">Le Live Karaoke chez vous</span><span lang="en">Live Karaoke at your place</span></h2>
-      <p class="lede" style="margin-top:14px"><span lang="fr">On arrive avec <b>le groupe, la liste de chansons et l'animation</b>. Pour un bar, un anniversaire, une fête de diplôme ou tout autre événement : vous n'avez qu'à ouvrir les portes.</span><span lang="en">We bring <b>the band, the song list and the host</b>. For a bar, a birthday, a graduation party or any other event: you just open the doors.</span></p>
+      <span class="eyebrow"><span lang="fr">Booker le show</span><span lang="en">Book the show</span><span lang="it">Prenota lo show</span></span>
+      <h2><span lang="fr">Le Live Karaoke chez vous</span><span lang="en">Live Karaoke at your place</span><span lang="it">Il Live Karaoke da te</span></h2>
+      <p class="lede" style="margin-top:14px"><span lang="fr">On arrive avec <b>le groupe, la liste de chansons et l'animation</b>. Pour un bar, un anniversaire, une fête de diplôme ou tout autre événement : vous n'avez qu'à ouvrir les portes.</span><span lang="en">We bring <b>the band, the song list and the host</b>. For a bar, a birthday, a graduation party or any other event: you just open the doors.</span><span lang="it">Portiamo noi <b>la band, la lista delle canzoni e il presentatore</b>. Per un bar, un compleanno, una festa di laurea o qualsiasi altro evento: a te basta aprire le porte.</span></p>
       <div class="aud">
         <article>
-          <span class="eyebrow"><span lang="fr">Bars, pubs & lieux publics</span><span lang="en">Bars, pubs & public venues</span></span>
-          <h3><span lang="fr">Faites chanter votre bar</span><span lang="en">Get your bar singing</span></h3>
+          <span class="eyebrow"><span lang="fr">Bars, pubs & lieux publics</span><span lang="en">Bars, pubs & public venues</span><span lang="it">Bar, pub e locali pubblici</span></span>
+          <h3><span lang="fr">Faites chanter votre bar</span><span lang="en">Get your bar singing</span><span lang="it">Fai cantare il tuo bar</span></h3>
           <ul>
             <li lang="fr"><b>Un public jeune et international</b>, à l'image de Paris.</li>
-            <li lang="en"><b>A young, international crowd</b>, as Paris itself.</li>
+            <li lang="en"><b>A young, international crowd</b>, as Paris itself.</li><li lang="it"><b>Un pubblico giovane e internazionale</b>, come Parigi.</li>
             <li lang="fr"><b>On s'occupe de tout</b> : groupe live, liste de chansons et animation de la soirée.</li>
-            <li lang="en"><b>We handle everything</b>: live band, song list and hosting the night.</li>
+            <li lang="en"><b>We handle everything</b>: live band, song list and hosting the night.</li><li lang="it"><b>Pensiamo a tutto noi</b>: band dal vivo, lista delle canzoni e animazione della serata.</li>
             <li lang="fr"><b>Rendez-vous régulier ou date unique</b>, selon votre programmation.</li>
-            <li lang="en"><b>Regular night or one-off date</b>, whatever fits your schedule.</li>
+            <li lang="en"><b>Regular night or one-off date</b>, whatever fits your schedule.</li><li lang="it"><b>Serata fissa o data singola</b>, come preferisci.</li>
             <li lang="fr"><b>Musiciens professionnels</b> et chansons en français, anglais, italien, espagnol et arabe.</li>
-            <li lang="en"><b>Professional musicians</b> and songs in French, English, Italian, Spanish and Arabic.</li>
+            <li lang="en"><b>Professional musicians</b> and songs in French, English, Italian, Spanish and Arabic.</li><li lang="it"><b>Musicisti professionisti</b> e canzoni in francese, inglese, italiano, spagnolo e arabo.</li>
           </ul>
         </article>
         <article>
-          <span class="eyebrow"><span lang="fr">Événements privés</span><span lang="en">Private events</span></span>
-          <h3><span lang="fr">Votre soirée, votre groupe</span><span lang="en">Your party, your band</span></h3>
+          <span class="eyebrow"><span lang="fr">Événements privés</span><span lang="en">Private events</span><span lang="it">Eventi privati</span></span>
+          <h3><span lang="fr">Votre soirée, votre groupe</span><span lang="en">Your party, your band</span><span lang="it">La tua festa, la tua band</span></h3>
           <ul>
             <li lang="fr"><b>Anniversaires, fêtes de diplôme, mariages, soirées d'entreprise</b>, associations et écoles.</li>
-            <li lang="en"><b>Birthdays, graduation parties, weddings, company parties</b>, student societies and schools.</li>
+            <li lang="en"><b>Birthdays, graduation parties, weddings, company parties</b>, student societies and schools.</li><li lang="it"><b>Compleanni, feste di laurea, matrimoni, feste aziendali</b>, associazioni studentesche e scuole.</li>
             <li lang="fr"><b>Vos invités sont les stars</b> : chacun peut chanter avec un vrai groupe.</li>
-            <li lang="en"><b>Your guests are the stars</b>: everyone gets to sing with a real band.</li>
+            <li lang="en"><b>Your guests are the stars</b>: everyone gets to sing with a real band.</li><li lang="it"><b>I tuoi ospiti sono le star</b>: tutti possono cantare con una vera band.</li>
             <li lang="fr"><b>Chansons sur mesure</b> : envoyez-nous vos incontournables, on les prépare.</li>
-            <li lang="en"><b>Custom songs</b>: send us your must-haves and we'll prepare them.</li>
+            <li lang="en"><b>Custom songs</b>: send us your must-haves and we'll prepare them.</li><li lang="it"><b>Canzoni su misura</b>: mandaci le tue preferite e le prepariamo.</li>
             <li lang="fr"><b>Format agile et flexible</b> : du duo au groupe complet, on s'adapte au lieu, au budget et au nombre d'invités.</li>
-            <li lang="en"><b>Agile, flexible format</b>: from a duo to a full band, tailored to your venue, budget and guest count.</li>
+            <li lang="en"><b>Agile, flexible format</b>: from a duo to a full band, tailored to your venue, budget and guest count.</li><li lang="it"><b>Format agile e flessibile</b>: dal duo alla band completa, su misura per il tuo locale, il tuo budget e il numero di ospiti.</li>
           </ul>
         </article>
       </div>
@@ -919,36 +919,36 @@ form .btn.sub:disabled{cursor:default}
         <img class="ph" src="contact.jpg" alt="" loading="lazy" decoding="async" width="720" height="1280">
         <div class="direct">
           <span class="eyebrow">Contact</span>
-          <h3><span lang="fr">Parlons de votre événement</span><span lang="en">Let's talk about your event</span></h3>
-          <p><span lang="fr">Faire vibrer votre bar, une soirée privée ou un mariage ? Écrivez-nous, on revient vers vous avec une proposition sur mesure.</span><span lang="en">Want to light up your venue, a private party or a wedding? Write to us and we'll come back with a tailored proposal.</span></p>
+          <h3><span lang="fr">Parlons de votre événement</span><span lang="en">Let's talk about your event</span><span lang="it">Parliamo del tuo evento</span></h3>
+          <p><span lang="fr">Faire vibrer votre bar, une soirée privée ou un mariage ? Écrivez-nous, on revient vers vous avec une proposition sur mesure.</span><span lang="en">Want to light up your venue, a private party or a wedding? Write to us and we'll come back with a tailored proposal.</span><span lang="it">Vuoi animare il tuo locale, una festa privata o un matrimonio? Scrivici e ti risponderemo con una proposta su misura.</span></p>
         </div>
         <form id="bookForm" novalidate>
           <div class="full">
             <div class="seg" role="group" aria-label="Type">
-              <button type="button" data-t="bar" aria-pressed="true"><span lang="fr">Bar / lieu public</span><span lang="en">Bar / public venue</span></button>
-              <button type="button" data-t="private" aria-pressed="false"><span lang="fr">Événement privé</span><span lang="en">Private event</span></button>
+              <button type="button" data-t="bar" aria-pressed="true"><span lang="fr">Bar / lieu public</span><span lang="en">Bar / public venue</span><span lang="it">Bar / locale pubblico</span></button>
+              <button type="button" data-t="private" aria-pressed="false"><span lang="fr">Événement privé</span><span lang="en">Private event</span><span lang="it">Evento privato</span></button>
             </div>
           </div>
-          <label class="m" for="f-name"><span lang="fr">Nom</span><span lang="en">Name</span><input id="f-name" autocomplete="name"></label>
-          <label class="m" for="f-venue"><span lang="fr" id="venueFr">Nom du bar</span><span lang="en" id="venueEn">Venue name</span><input id="f-venue"></label>
-          <label class="c" for="f-contact"><span lang="fr">E-mail ou téléphone</span><span lang="en">E-mail or phone</span><input id="f-contact" autocomplete="email" inputmode="email"></label>
-          <label for="f-date"><span lang="fr">Date</span><span lang="en">Date</span><input id="f-date" placeholder="14 / 11" autocomplete="off"></label>
-          <label for="f-guests"><span lang="fr">Invités</span><span lang="en">Guests</span><input id="f-guests" inputmode="numeric" placeholder="80"></label>
-          <label class="fmt" for="f-fmt"><span lang="fr">Formule souhaitée</span><span lang="en">Preferred set-up</span>
+          <label class="m" for="f-name"><span lang="fr">Nom</span><span lang="en">Name</span><span lang="it">Nome</span><input id="f-name" autocomplete="name"></label>
+          <label class="m" for="f-venue"><span lang="fr" id="venueFr">Nom du bar</span><span lang="en" id="venueEn">Venue name</span><span lang="it" id="venueIt">Nome del locale</span><input id="f-venue"></label>
+          <label class="c" for="f-contact"><span lang="fr">E-mail ou téléphone</span><span lang="en">E-mail or phone</span><span lang="it">E-mail o telefono</span><input id="f-contact" autocomplete="email" inputmode="email"></label>
+          <label for="f-date"><span lang="fr">Date</span><span lang="en">Date</span><span lang="it">Data</span><input id="f-date" placeholder="14 / 11" autocomplete="off"></label>
+          <label for="f-guests"><span lang="fr">Invités</span><span lang="en">Guests</span><span lang="it">Ospiti</span><input id="f-guests" inputmode="numeric" placeholder="80"></label>
+          <label class="fmt" for="f-fmt"><span lang="fr">Formule souhaitée</span><span lang="en">Preferred set-up</span><span lang="it">Formula preferita</span>
             <select id="f-fmt">
-              <option value="" data-fr="Je ne sais pas encore, conseillez-moi" data-en="Not sure yet, advise me">Je ne sais pas encore</option>
-              <option value="duo" data-fr="Duo (2 musiciens)" data-en="Duo (2 musicians)">Duo</option>
-              <option value="trio" data-fr="Trio" data-en="Trio">Trio</option>
-              <option value="band" data-fr="Groupe complet" data-en="Full band">Groupe complet</option>
+              <option value="" data-fr="Je ne sais pas encore, conseillez-moi" data-en="Not sure yet, advise me" data-it="Non lo so ancora, consigliatemi">Je ne sais pas encore</option>
+              <option value="duo" data-fr="Duo (2 musiciens)" data-en="Duo (2 musicians)" data-it="Duo (2 musicisti)">Duo</option>
+              <option value="trio" data-fr="Trio" data-en="Trio" data-it="Trio">Trio</option>
+              <option value="band" data-fr="Groupe complet" data-en="Full band" data-it="Band completa">Groupe complet</option>
             </select></label>
-          <label class="full" for="f-msg"><span lang="fr">Message</span><span lang="en">Message</span><textarea id="f-msg" rows="2" placeholder=""></textarea></label>
-          <div class="full"><button class="btn primary sub" type="submit"><span class="lbl" lang="fr">Envoyer</span><span class="lbl" lang="en">Send</span><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+          <label class="full" for="f-msg"><span lang="fr">Message</span><span lang="en">Message</span><span lang="it">Messaggio</span><textarea id="f-msg" rows="2" placeholder=""></textarea></label>
+          <div class="full"><button class="btn primary sub" type="submit"><span class="lbl" lang="fr">Envoyer</span><span class="lbl" lang="en">Send</span><span class="lbl" lang="it">Invia</span><svg class="arw" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
             <p id="fmsg" role="status" aria-live="polite"></p></div>
           <div id="out" hidden>
             <pre id="outText"></pre>
             <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <button class="btn primary small" type="button" data-copy="outText"><span lang="fr">Copier le message</span><span lang="en">Copy message</span></button>
-              <a class="btn ghost small" id="mailLink" href="#" hidden><span lang="fr">Envoyer par e-mail</span><span lang="en">Send by e-mail</span></a>
+              <button class="btn primary small" type="button" data-copy="outText"><span lang="fr">Copier le message</span><span lang="en">Copy message</span><span lang="it">Copia il messaggio</span></button>
+              <a class="btn ghost small" id="mailLink" href="#" hidden><span lang="fr">Envoyer par e-mail</span><span lang="en">Send by e-mail</span><span lang="it">Invia per e-mail</span></a>
             </div>
             <p class="note" id="outNote"></p>
           </div>
@@ -959,24 +959,24 @@ form .btn.sub:disabled{cursor:default}
 
   <section class="band" id="musiciens">
     <div class="txt">
-      <span class="eyebrow"><span lang="fr">Rejoins-nous</span><span lang="en">Work with us</span></span>
-      <h2><span lang="fr"><span class="nw">Musicien·ne&nbsp;?</span> Monte sur scène avec nous</span><span lang="en">A musician? Join us on stage</span></h2>
-      <p class="lede"><span lang="fr">On cherche des musiciens qui aiment jouer de tout, apprendre vite et faire chanter une salle. Envoie-nous une vidéo ou un lien : on t'invite à une soirée.</span><span lang="en">We're looking for musicians who love playing everything, learn fast and know how to get a room singing. Send us a video or a link and we'll invite you to a night.</span></p>
-      <div class="inst"><span><i>🎸</i><b lang="fr">Guitare</b><b lang="en">Guitar</b></span><span><i>🎸</i><b lang="fr">Basse</b><b lang="en">Bass</b></span><span><i>🥁</i><b lang="fr">Batterie</b><b lang="en">Drums</b></span><span><i>🎹</i><b lang="fr">Claviers</b><b lang="en">Keys</b></span><span><i>🎤</i><b lang="fr">Chant</b><b lang="en">Vocals</b></span></div>
-      <a class="cta-big mus" href="#contact"><span class="lbl"><span lang="fr">Nous contacter</span><span lang="en">Get in touch</span></span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
+      <span class="eyebrow"><span lang="fr">Rejoins-nous</span><span lang="en">Work with us</span><span lang="it">Lavora con noi</span></span>
+      <h2><span lang="fr"><span class="nw">Musicien·ne&nbsp;?</span> Monte sur scène avec nous</span><span lang="en">A musician? Join us on stage</span><span lang="it">Sei un musicista? Sali sul palco con noi</span></h2>
+      <p class="lede"><span lang="fr">On cherche des musiciens qui aiment jouer de tout, apprendre vite et faire chanter une salle. Envoie-nous une vidéo ou un lien : on t'invite à une soirée.</span><span lang="en">We're looking for musicians who love playing everything, learn fast and know how to get a room singing. Send us a video or a link and we'll invite you to a night.</span><span lang="it">Cerchiamo musicisti che amano suonare di tutto, imparano in fretta e sanno far cantare una sala. Mandaci un video o un link e ti invitiamo a una serata.</span></p>
+      <div class="inst"><span><i>🎸</i><b lang="fr">Guitare</b><b lang="en">Guitar</b><b lang="it">Chitarra</b></span><span><i>🎸</i><b lang="fr">Basse</b><b lang="en">Bass</b><b lang="it">Basso</b></span><span><i>🥁</i><b lang="fr">Batterie</b><b lang="en">Drums</b><b lang="it">Batteria</b></span><span><i>🎹</i><b lang="fr">Claviers</b><b lang="en">Keys</b><b lang="it">Tastiere</b></span><span><i>🎤</i><b lang="fr">Chant</b><b lang="en">Vocals</b><b lang="it">Voce</b></span></div>
+      <a class="cta-big mus" href="#contact"><span class="lbl"><span lang="fr">Nous contacter</span><span lang="en">Get in touch</span><span lang="it">Contattaci</span></span><span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
     </div>
   </section>
 
   <footer>
     <img class="flogo" src="logo.png" alt="Live Karaoke Paris">
-    <p class="ftag"><span lang="fr">Karaoké avec groupe live · Paris</span><span lang="en">Live band karaoke · Paris</span></p>
+    <p class="ftag"><span lang="fr">Karaoké avec groupe live · Paris</span><span lang="en">Live band karaoke · Paris</span><span lang="it">Karaoke con band dal vivo · Parigi</span></p>
     <nav class="flinks" aria-label="Footer">
-      <a href="#histoire"><span lang="fr">Notre histoire</span><span lang="en">Our story</span></a>
-      <a href="#format"><span lang="fr">Le concept</span><span lang="en">How it works</span></a>
-      <a href="#ambiance"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span></a>
+      <a href="#histoire"><span lang="fr">Notre histoire</span><span lang="en">Our story</span><span lang="it">La nostra storia</span></a>
+      <a href="#format"><span lang="fr">Le concept</span><span lang="en">How it works</span><span lang="it">Il concept</span></a>
+      <a href="#ambiance"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span><span lang="it">L'atmosfera</span></a>
       <a href="#dates">Dates</a>
       <a href="#musiciens">Work with us</a>
-      <a href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Liste des chansons</span><span lang="en">Song list</span></a>
+      <a href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Liste des chansons</span><span lang="en">Song list</span><span lang="it">Lista delle canzoni</span></a>
     </nav>
     <p class="fcopy">© 2026 Live Karaoke Paris</p>
   </footer>
@@ -1019,8 +1019,8 @@ const DATES = [
 const SONGS = [["Dancing Queen","EN"],["Alors On Danse","FR"],["Billie Jean","EN"],["Despacito","ES"],["Sweet Caroline","EN"],["Nel Blu Dipinto Di Blu (Volare)","IT"],["Let It Be","EN"],["Let It Go","DISNEY"],["I Will Survive","EN"],["Les Champs-Élysées","FR"],["Rolling In The Deep","EN"],["Danza Kuduro","ES"],["Wonderwall","EN"],["Sarà Perché Ti Amo","IT"],["Stand By Me","EN"],["Hakuna Matata","DISNEY"],["Twist And Shout","EN"],["Non, Je Ne Regrette Rien","FR"],["Viva La Vida","EN"],["Waka Waka","EN"],["Hit The Road Jack","EN"],["Bella Ciao","IT"],["Mamma Mia","EN"],["A Whole New World","DISNEY"]];
 
 let lang = "fr";
-const devLang = (((navigator.languages&&navigator.languages[0])||navigator.language||"fr")+"").toLowerCase().startsWith("fr") ? "fr" : "en";
-try{ lang = localStorage.getItem("lkp-lang") || devLang; }catch(e){ lang = devLang; }
+const devLang = (l=>l.startsWith("fr")?"fr":l.startsWith("it")?"it":"en")((((navigator.languages&&navigator.languages[0])||navigator.language||"fr")+"").toLowerCase());
+try{ lang = localStorage.getItem("lkp-lang") || devLang; if(!["fr","en","it"].includes(lang)) lang=devLang; }catch(e){ lang = devLang; }
 
 function setLang(l){
   lang = l; document.documentElement.dataset.lang = l; document.documentElement.lang = l;
@@ -1054,15 +1054,15 @@ if("IntersectionObserver" in window){ const tk=track.closest(".ticker"); new Int
 /* dates */
 function renderDates(){
   const today = new Date(); today.setHours(0,0,0,0);
-  const loc = lang==="fr" ? "fr-FR" : "en-GB";
+  const loc = lang==="fr" ? "fr-FR" : lang==="it" ? "it-IT" : "en-GB";
   const up = DATES.map(x=>({...x, date:new Date(x.d+"T12:00:00")})).filter(x=>x.date>=today);
   const ul = document.getElementById("dateList");
-  if(!up.length){ ul.innerHTML = `<li style="grid-template-columns:1fr"><p>${lang==="fr"?"Nouvelles dates bientôt annoncées.":"New dates coming soon."}</p></li>`; return; }
+  if(!up.length){ ul.innerHTML = `<li style="grid-template-columns:1fr"><p>${lang==="fr"?"Nouvelles dates bientôt annoncées.":lang==="it"?"Nuove date in arrivo.":"New dates coming soon."}</p></li>`; return; }
   ul.innerHTML = up.map((x,i)=>{
     const wd = x.date.toLocaleDateString(loc,{weekday:"long"});
     const mo = x.date.toLocaleDateString(loc,{month:"short"});
     const title = `${wd.charAt(0).toUpperCase()+wd.slice(1)} · <a href="${BAR_INSTAGRAM}" target="_blank" rel="noopener">${x.venue}</a>`;
-    return `<li class="${i===0?"next":""}"><div class="day"><b>${x.date.getDate()}</b><small>${mo.replace(".","")}</small></div><div><h3>${title}</h3><p>${x.area}</p></div><span class="tag">${i===0?(lang==="fr"?"Prochaine":"Next up"):(lang==="fr"?"Mercredi":"Wednesday")}</span></li>`;
+    return `<li class="${i===0?"next":""}"><div class="day"><b>${x.date.getDate()}</b><small>${mo.replace(".","")}</small></div><div><h3>${title}</h3><p>${x.area}</p></div><span class="tag">${i===0?(lang==="fr"?"Prochaine":lang==="it"?"La prossima":"Next up"):(lang==="fr"?"Mercredi":lang==="it"?"Mercoledì":"Wednesday")}</span></li>`;
   }).join("");
 }
 
@@ -1087,7 +1087,7 @@ function renderDates(){
   let gliding=false, curSpot=null;
   const useLoud=v=>{ if(HOSTED||!v.dataset.loud||v.dataset.cur==="loud") return; v.dataset.cur="loud"; v.setAttribute("src",v.dataset.loud); };
   const useQuiet=v=>{ if(HOSTED||!v.dataset.quiet||v.dataset.cur!=="loud") return; const was=!v.paused; v.dataset.cur="quiet"; v.setAttribute("src",v.dataset.quiet); if(was) v.play().catch(()=>{}); };
-  let label=()=>figs.forEach(f=>{ const v0=f.querySelector("video"); if(v0.muted) useQuiet(v0); const on=!f.querySelector("video").muted; f.classList.toggle("on",on); const bt=f.querySelector(".snd"); bt.setAttribute("aria-pressed",on); bt.querySelector(".x").style.display=on?"none":""; bt.querySelector(".w").style.display=on?"":"none"; bt.querySelector(".t").innerHTML=on?(lang==="fr"?"Son activé":"Sound on"):(lang==="fr"?"Activer le son":"Tap for sound"); });
+  let label=()=>figs.forEach(f=>{ const v0=f.querySelector("video"); if(v0.muted) useQuiet(v0); const on=!f.querySelector("video").muted; f.classList.toggle("on",on); const bt=f.querySelector(".snd"); bt.setAttribute("aria-pressed",on); bt.querySelector(".x").style.display=on?"none":""; bt.querySelector(".w").style.display=on?"":"none"; bt.querySelector(".t").innerHTML=on?(lang==="fr"?"Son activé":lang==="it"?"Audio attivo":"Sound on"):(lang==="fr"?"Activer le son":lang==="it"?"Attiva l'audio":"Tap for sound"); });
   const _lab=label; label=()=>{ _lab(); document.documentElement.classList.toggle("spot-on", figs.some(f=>f.classList.contains("on"))); }; window.__reelLabel=label; label();
   if("IntersectionObserver" in window){
     const vis=new WeakSet(); let st=0;
@@ -1290,7 +1290,7 @@ document.addEventListener("click",e=>{
   const b = e.target.closest("[data-copy]"); if(!b) return;
   const el = document.getElementById(b.dataset.copy);
   const txt = el.textContent;
-  const done = ()=>{ const o=b.innerHTML; b.innerHTML = lang==="fr"?"Copié ✓":"Copied ✓"; setTimeout(()=>b.innerHTML=o,1600); };
+  const done = ()=>{ const o=b.innerHTML; b.innerHTML = lang==="fr"?"Copié ✓":lang==="it"?"Copiato ✓":"Copied ✓"; setTimeout(()=>b.innerHTML=o,1600); };
   const sel = ()=>{ const r=document.createRange(); r.selectNodeContents(el); const s=getSelection(); s.removeAllRanges(); s.addRange(r); };
   if(navigator.clipboard) navigator.clipboard.writeText(txt).then(done).catch(sel); else sel();
 });
@@ -1307,30 +1307,32 @@ document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",(
   document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed", x===b));
   document.getElementById("venueFr").textContent = type==="bar" ? "Nom du bar" : "Lieu / événement";
   document.getElementById("venueEn").textContent = type==="bar" ? "Venue name" : "Venue / event";
+  document.getElementById("venueIt").textContent = type==="bar" ? "Nome del locale" : "Luogo / evento";
 }));
-function fmtLabel(){ const o=document.getElementById("f-fmt"); if(!o||!o.value) return ""; const op=o.options[o.selectedIndex]; return op.dataset[lang==="fr"?"fr":"en"]; }
+function fmtLabel(){ const o=document.getElementById("f-fmt"); if(!o||!o.value) return ""; const op=o.options[o.selectedIndex]; return op.dataset[lang] || op.dataset.en; }
 /* booking form: sent for real through Formspree (delivered to the organiser's inbox) */
 const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
 (function(){
   const form=document.getElementById("bookForm"), btn=form.querySelector(".sub"), msg=document.getElementById("fmsg");
   /* split the button word into letters so they can fold away one by one */
   btn.querySelectorAll(".lbl").forEach(l=>{ const w=l.textContent; l.setAttribute("aria-label",w); l.textContent=""; [...w].forEach((c,i)=>{ const x=document.createElement("i"); x.textContent=c; x.style.setProperty("--i",i); x.setAttribute("aria-hidden","true"); l.append(x); }); });
-  const T=(fr,en)=>lang==="fr"?fr:en;
+  const T=(fr,en,it)=>lang==="fr"?fr:lang==="it"&&it?it:en;
   form.addEventListener("submit",async e=>{
     e.preventDefault();
     const g=id=>document.getElementById(id).value.trim();
     msg.className=""; msg.textContent="";
-    if(!g("f-name")||!g("f-contact")){ msg.className="err"; msg.textContent=T("Merci d'indiquer votre nom et un e-mail ou un téléphone.","Please add your name and an e-mail or phone number."); (g("f-name")?document.getElementById("f-contact"):document.getElementById("f-name")).focus(); return; }
+    if(!g("f-name")||!g("f-contact")){ msg.className="err"; msg.textContent=T("Merci d'indiquer votre nom et un e-mail ou un téléphone.","Please add your name and an e-mail or phone number.","Indica il tuo nome e un'e-mail o un numero di telefono."); (g("f-name")?document.getElementById("f-contact"):document.getElementById("f-name")).focus(); return; }
     const fr=lang==="fr", isMail=/@/.test(g("f-contact"));
+    const L=(f,e,i)=>fr?f:lang==="it"?i:e, bar=type==="bar";
     const lines=[
-      fr?"Bonjour Live Karaoke Paris,":"Hi Live Karaoke Paris,","",
-      fr?(type==="bar"?"Je souhaiterais accueillir une soirée Live Karaoke dans mon établissement.":"Je souhaiterais organiser un Live Karaoke pour un événement privé."):(type==="bar"?"I'd like to host a Live Karaoke night at my venue.":"I'd like to book Live Karaoke for a private event."),
-      g("f-venue")&&((fr?(type==="bar"?"Établissement : ":"Lieu / événement : "):(type==="bar"?"Venue: ":"Venue / event: "))+g("f-venue")),
-      g("f-date")&&((fr?"Date souhaitée : ":"Preferred date: ")+g("f-date")),
-      g("f-guests")&&((fr?"Capacité / invités : ":"Capacity / guests: ")+g("f-guests")),
-      fmtLabel()&&((fr?"Formule souhaitée : ":"Preferred set-up: ")+fmtLabel()),
+      L("Bonjour Live Karaoke Paris,","Hi Live Karaoke Paris,","Ciao Live Karaoke Paris,"),"",
+      bar?L("Je souhaiterais accueillir une soirée Live Karaoke dans mon établissement.","I'd like to host a Live Karaoke night at my venue.","Vorrei ospitare una serata di Live Karaoke nel mio locale."):L("Je souhaiterais organiser un Live Karaoke pour un événement privé.","I'd like to book Live Karaoke for a private event.","Vorrei organizzare un Live Karaoke per un evento privato."),
+      g("f-venue")&&((bar?L("Établissement : ","Venue: ","Locale: "):L("Lieu / événement : ","Venue / event: ","Luogo / evento: "))+g("f-venue")),
+      g("f-date")&&(L("Date souhaitée : ","Preferred date: ","Data preferita: ")+g("f-date")),
+      g("f-guests")&&(L("Capacité / invités : ","Capacity / guests: ","Capienza / ospiti: ")+g("f-guests")),
+      fmtLabel()&&(L("Formule souhaitée : ","Preferred set-up: ","Formula preferita: ")+fmtLabel()),
       g("f-msg")&&("\n"+g("f-msg")),"",
-      (fr?"Merci,\n":"Thanks,\n")+g("f-name")+"\n"+g("f-contact")
+      L("Merci,\n","Thanks,\n","Grazie,\n")+g("f-name")+"\n"+g("f-contact")
     ].filter(Boolean);
     const text=lines.join("\n");
     const data=new FormData();
@@ -1349,8 +1351,8 @@ const FORM_ENDPOINT = "https://formspree.io/f/moevgzov";
     btn.classList.add("back"); btn.classList.remove("go");
     setTimeout(()=>{ btn.classList.remove("back"); btn.disabled=false; },calm?0:600);
     const out=document.getElementById("out");
-    if(ok){ form.reset(); type="bar"; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.t==="bar")); document.getElementById("venueFr").textContent="Nom du bar"; document.getElementById("venueEn").textContent="Venue name"; out.hidden=true; msg.className="ok"; msg.textContent=T("Message envoyé ✓ On vous répond très vite.","Message sent ✓ We'll get back to you very soon."); }
-    else{ msg.className="err"; msg.textContent=T("L'envoi n'a pas abouti. Copiez le message ci-dessous et envoyez-le-nous.","Sending failed. Copy the message below and send it to us."); document.getElementById("outText").textContent=text; document.getElementById("outNote").textContent=""; document.getElementById("outNote").hidden=true; if(CONTACT_EMAIL){ const ml=document.getElementById("mailLink"); ml.href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Live Karaoke Paris")+"&body="+encodeURIComponent(text); ml.hidden=false; } out.hidden=false; }
+    if(ok){ form.reset(); type="bar"; document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.t==="bar")); document.getElementById("venueFr").textContent="Nom du bar"; document.getElementById("venueEn").textContent="Venue name"; document.getElementById("venueIt").textContent="Nome del locale"; out.hidden=true; msg.className="ok"; msg.textContent=T("Message envoyé ✓ On vous répond très vite.","Message sent ✓ We'll get back to you very soon.","Messaggio inviato ✓ Ti rispondiamo molto presto."); }
+    else{ msg.className="err"; msg.textContent=T("L'envoi n'a pas abouti. Copiez le message ci-dessous et envoyez-le-nous.","Sending failed. Copy the message below and send it to us.","L'invio non è andato a buon fine. Copia il messaggio qui sotto e mandacelo."); document.getElementById("outText").textContent=text; document.getElementById("outNote").textContent=""; document.getElementById("outNote").hidden=true; if(CONTACT_EMAIL){ const ml=document.getElementById("mailLink"); ml.href="mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent("Live Karaoke Paris")+"&body="+encodeURIComponent(text); ml.hidden=false; } out.hidden=false; }
   });
 })();
 
