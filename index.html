@@ -284,8 +284,8 @@ nav.top .mctl,nav.top .menu,nav.top .scrim{display:none}
 .reel figure:hover .snd,.reel figure.on .snd,.snd:focus-visible{opacity:1;translate:-50% 0}
 @media (hover:none){.snd{opacity:.95;translate:-50% 0;padding:8px 12px;bottom:10px}}
 .reel figure.on{box-shadow:0 0 0 3px var(--lilac),0 18px 50px -24px rgba(167,139,250,.6)}
-.reel figure.pick{animation:pick 2.2s cubic-bezier(.22,.9,.28,1)}
-@keyframes pick{0%{box-shadow:0 0 0 0 rgba(255,191,115,0),0 14px 34px -22px rgba(167,139,250,.5);transform:translateZ(0) scale(1)}25%{box-shadow:0 0 0 3px var(--spot),0 0 40px 8px rgba(255,191,115,.45);transform:translateZ(0) scale(1.05)}100%{box-shadow:0 0 0 0 rgba(255,191,115,0),0 14px 34px -22px rgba(167,139,250,.5);transform:translateZ(0) scale(1)}}
+.reel figure.pick{animation:pick 1.4s ease-out}
+@keyframes pick{0%{box-shadow:0 0 0 0 rgba(255,191,115,0)}20%{box-shadow:0 0 0 3px var(--spot),0 0 36px 6px rgba(255,191,115,.45)}100%{box-shadow:0 0 0 0 rgba(255,191,115,0)}}
 @media (prefers-reduced-motion:reduce){.reel figure.pick{animation:none}}
 .rnav{position:absolute;top:50%;translate:0 -60%;width:44px;height:44px;border-radius:50%;border:0;background:var(--lilac);color:var(--deep);font:700 1.6rem/1 var(--body);cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.4)}
 .rnav.prev{left:-6px}.rnav.next{right:-6px}
@@ -1107,7 +1107,8 @@ function renderDates(){
   addEventListener("keydown",e=>{ if(e.key==="Escape" && vids.some(v=>!v.muted)){ vids.forEach(x=>x.muted=true); label(); } });
   /* hero frames: a click jumps to the reel with that same clip first on the left, restarted (still muted) and briefly lit */
   const pad=()=>parseFloat(getComputedStyle(rail).paddingLeft)||0;
-  const flash=f=>{ const v=f.querySelector("video"); giveSrc(v).then(()=>{ try{ v.currentTime=0; }catch(_){} if(!still) v.play().catch(()=>{}); }); f.classList.remove("pick"); void f.offsetWidth; setTimeout(()=>f.classList.add("pick"),650); setTimeout(()=>f.classList.remove("pick"),2900); };
+  const glow=f=>{ f.classList.remove("pick"); void f.offsetWidth; f.classList.add("pick"); setTimeout(()=>f.classList.remove("pick"),1400); };
+  const flash=f=>{ giveSrc(f.querySelector("video")); setTimeout(()=>glow(f),700); };
   window.__reelShow=i=>{ const f=figs[i]; if(!f) return; rail.scrollTo({left:Math.max(0,f.offsetLeft-pad()),behavior:"auto"}); flash(f); };
   document.querySelectorAll(".hero .art a[data-clip]").forEach(a=>a.addEventListener("click",()=>window.__reelShow(+a.dataset.clip)));
   if(!canAnim) return;
@@ -1143,12 +1144,14 @@ function renderDates(){
   rail.addEventListener("wheel",touchPause,{passive:true});
 
   /* speed: eased towards the wanted rate (1 = normal; ~0.1 near the middle of the strip under the mouse; 0 while dragging, listening or just touched) */
-  let onScreen=true, looping=false;
+  let onScreen=true, looping=false, pick=null;
   if("IntersectionObserver" in window){ new IntersectionObserver(es=>es.forEach(e=>{ onScreen=e.isIntersecting; if(!onScreen){ if(anim.playState==="running") anim.pause(); } else if(!looping){ looping=true; last=performance.now(); requestAnimationFrame(loop); } }),{rootMargin:"200px 0px"}).observe(rail); }
   function loop(now){
     if(!onScreen){ looping=false; return; }
     const dt=Math.min(.05,(now-last)/1000); last=now;
     let t=1;
+    /* after a hero-frame click: hold still until the strip is really on screen, light the clip, then restart after ~1.2 s */
+    if(pick!==null){ const r=rail.getBoundingClientRect(); if(r.top<innerHeight*.9 && r.bottom>innerHeight*.1){ const q=nearest(pick).f; if(q) glow(q); pick=null; pauseUntil=now+900; } else pauseUntil=Math.max(pauseUntil,now+300); }
     if(hover){ const a=Math.abs(hx-.5)*2; t=.1+.9*Math.min(1,a/.8); }
     if(vids.some(v=>!v.muted) || dragging || tweening || now<pauseUntil || document.hidden) t=0;
     rate+=(t-rate)*Math.min(1,dt*3.5);
@@ -1165,12 +1168,12 @@ function renderDates(){
     const start=getT(), delta=dir*step()*2/W*D, t0=performance.now(), dur=520;
     (function f(now){ const k=Math.min(1,(now-t0)/dur), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; setT(start+delta*e); if(k<1) requestAnimationFrame(f); else tweening=false; })(t0);
   }
+  /* the copy of clip i whose left edge is nearest the strip's left edge (the loop may wrap, so always look it up again) */
+  const nearest=i=>{ const x0=rail.getBoundingClientRect().left+pad(); let f=null, d=1e9; figs.forEach((q,j)=>{ if(j%n!==i) return; const e=q.getBoundingClientRect().left-x0; if(Math.abs(e)<Math.abs(d)){ d=e; f=q; } }); if(f) giveSrc(f.querySelector("video")); return {f,d}; };
   window.__reelShow=i=>{
     if(!figs[i]) return;
-    const r=rail.getBoundingClientRect(), x0=r.left+pad();
-    let best=null, bd=1e9;  /* the copy of that clip nearest to the left edge, so the strip barely jumps */
-    figs.forEach((q,j)=>{ if(j%n!==i) return; const d=q.getBoundingClientRect().left-x0; if(Math.abs(d)<Math.abs(bd)){ bd=d; best=q; } });
-    setT(getT()+bd/W*D); pauseUntil=performance.now()+6000; flash(best);
+    const bd=nearest(i).d;
+    setT(getT()+bd/W*D); pick=i; nearest(i); pauseUntil=performance.now()+4000; if(!looping){ looping=true; last=performance.now(); requestAnimationFrame(loop); }
   };
   spotFn=function(f){
     const r=rail.getBoundingClientRect(), fr=f.getBoundingClientRect();
