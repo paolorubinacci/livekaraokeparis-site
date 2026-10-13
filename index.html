@@ -284,6 +284,9 @@ nav.top .mctl,nav.top .menu,nav.top .scrim{display:none}
 .reel figure:hover .snd,.reel figure.on .snd,.snd:focus-visible{opacity:1;translate:-50% 0}
 @media (hover:none){.snd{opacity:.95;translate:-50% 0;padding:8px 12px;bottom:10px}}
 .reel figure.on{box-shadow:0 0 0 3px var(--lilac),0 18px 50px -24px rgba(167,139,250,.6)}
+.reel figure.pick{animation:pick 2.2s cubic-bezier(.22,.9,.28,1)}
+@keyframes pick{0%{box-shadow:0 0 0 0 rgba(255,191,115,0),0 14px 34px -22px rgba(167,139,250,.5);transform:translateZ(0) scale(1)}25%{box-shadow:0 0 0 3px var(--spot),0 0 40px 8px rgba(255,191,115,.45);transform:translateZ(0) scale(1.05)}100%{box-shadow:0 0 0 0 rgba(255,191,115,0),0 14px 34px -22px rgba(167,139,250,.5);transform:translateZ(0) scale(1)}}
+@media (prefers-reduced-motion:reduce){.reel figure.pick{animation:none}}
 .rnav{position:absolute;top:50%;translate:0 -60%;width:44px;height:44px;border-radius:50%;border:0;background:var(--lilac);color:var(--deep);font:700 1.6rem/1 var(--body);cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.4)}
 .rnav.prev{left:-6px}.rnav.next{right:-6px}
 @media (max-width:700px){.rnav{display:none}}
@@ -780,7 +783,7 @@ form .btn.sub:disabled{cursor:default}
         <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span></p><div class="more" aria-hidden="true"><span lang="fr">On adapte le format à votre lieu</span><span lang="en">We adapt the format to your venue</span></div></div>
       </div>
     </div>
-    <div class="art"><a class="a1" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
+    <div class="art"><a class="a1" href="#ambiance" data-clip="0" aria-label="Voir l'ambiance / See the vibe"><img src="art1.jpg" alt=""></a><a class="a2" href="#ambiance" data-clip="3" aria-label="Voir l'ambiance / See the vibe"><img src="art2.jpg" alt=""></a><a class="a3" href="#ambiance" data-clip="4" aria-label="Voir l'ambiance / See the vibe"><img src="art3.jpg" alt=""></a></div>
   </header>
 </main>
 
@@ -1102,6 +1105,11 @@ function renderDates(){
   const scrim=document.getElementById("spotscrim");
   if(scrim) scrim.addEventListener("click",()=>{ vids.forEach(x=>x.muted=true); label(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape" && vids.some(v=>!v.muted)){ vids.forEach(x=>x.muted=true); label(); } });
+  /* hero frames: a click jumps to the reel with that same clip first on the left, restarted (still muted) and briefly lit */
+  const pad=()=>parseFloat(getComputedStyle(rail).paddingLeft)||0;
+  const flash=f=>{ const v=f.querySelector("video"); giveSrc(v).then(()=>{ try{ v.currentTime=0; }catch(_){} if(!still) v.play().catch(()=>{}); }); f.classList.remove("pick"); void f.offsetWidth; setTimeout(()=>f.classList.add("pick"),650); setTimeout(()=>f.classList.remove("pick"),2900); };
+  window.__reelShow=i=>{ const f=figs[i]; if(!f) return; rail.scrollTo({left:Math.max(0,f.offsetLeft-pad()),behavior:"auto"}); flash(f); };
+  document.querySelectorAll(".hero .art a[data-clip]").forEach(a=>a.addEventListener("click",()=>window.__reelShow(+a.dataset.clip)));
   if(!canAnim) return;
 
   let W=0, D=0, anim=null, rate=1, hover=false, hx=.5, pauseUntil=0, dragging=false, tweening=false, last=performance.now();
@@ -1157,6 +1165,13 @@ function renderDates(){
     const start=getT(), delta=dir*step()*2/W*D, t0=performance.now(), dur=520;
     (function f(now){ const k=Math.min(1,(now-t0)/dur), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2; setT(start+delta*e); if(k<1) requestAnimationFrame(f); else tweening=false; })(t0);
   }
+  window.__reelShow=i=>{
+    if(!figs[i]) return;
+    const r=rail.getBoundingClientRect(), x0=r.left+pad();
+    let best=null, bd=1e9;  /* the copy of that clip nearest to the left edge, so the strip barely jumps */
+    figs.forEach((q,j)=>{ if(j%n!==i) return; const d=q.getBoundingClientRect().left-x0; if(Math.abs(d)<Math.abs(bd)){ bd=d; best=q; } });
+    setT(getT()+bd/W*D); pauseUntil=performance.now()+6000; flash(best);
+  };
   spotFn=function(f){
     const r=rail.getBoundingClientRect(), fr=f.getBoundingClientRect();
     const dx=(fr.left+fr.width/2)-(r.left+r.width/2), i0=figs.indexOf(f)%n;
