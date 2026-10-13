@@ -694,6 +694,17 @@ form .btn.sub:disabled{cursor:default}
   nav.top.scrolled.peek .mlang button[aria-pressed="true"]{border-color:var(--lilac);background:rgba(196,181,253,.2);color:var(--ink)}
 }
 </style>
+<script>
+/* refresh = start from the top: the browser would otherwise jump back to the last #section clicked or to the old scroll position. A link from outside to a #section still works on first open. */
+(function(){
+  try{ if("scrollRestoration" in history) history.scrollRestoration="manual"; }catch(e){}
+  var nav=(performance.getEntriesByType&&performance.getEntriesByType("navigation")[0])||{}, reload=nav.type==="reload"||(performance.navigation&&performance.navigation.type===1);
+  if(!reload) return;
+  if(location.hash) try{ history.replaceState(null,"",location.pathname+location.search); }catch(e){}
+  var top=function(){ window.scrollTo({top:0,left:0,behavior:"instant"}); };
+  top(); addEventListener("DOMContentLoaded",top); addEventListener("load",function(){ top(); setTimeout(top,60); });
+})();
+</script>
 </head>
 <body>
 
