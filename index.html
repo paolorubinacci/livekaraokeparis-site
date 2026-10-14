@@ -174,6 +174,7 @@ nav.top .mctl,nav.top .menu,nav.top .scrim{display:none}
   nav.top .menu li{opacity:0;transform:translateY(18px) scale(.97);filter:blur(7px);transform-origin:0 50%;transition:opacity .25s ease,transform .3s ease,filter .25s ease}
   nav.top.open .menu li{opacity:1;transform:none;filter:none;transition:opacity .45s ease calc(.16s + var(--i)*.06s),transform .7s var(--spring) calc(.16s + var(--i)*.06s),filter .45s ease calc(.16s + var(--i)*.06s)}
   nav.top .menu li+li a{border-top:1px solid rgba(255,255,255,.12)}
+  nav.top .menu a.bandin{opacity:.75;font-size:.9em}nav.top .menu a.bandin small svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;vertical-align:-2px}
   nav.top .menu a.ml{display:grid;grid-template-columns:34px 1fr auto;align-items:baseline;padding:11px 2px 10px;color:var(--ink);text-decoration:none;font-family:var(--head);font-weight:700;font-size:1.65rem;line-height:1.1;letter-spacing:-.01em;-webkit-tap-highlight-color:transparent}
   nav.top .menu a.ml small{font:600 .68rem/1 var(--body);letter-spacing:.18em;color:var(--lilac);opacity:.9}
   nav.top .menu a.ml em{font-style:normal;font-weight:400;font-size:1.25rem;color:var(--lilac);opacity:.7;transition:transform .35s var(--spring),opacity .25s}
@@ -767,6 +768,7 @@ form .btn.sub:disabled{cursor:default}
           <li style="--i:3"><a class="ml" href="#ambiance"><small>04</small><span><span lang="fr">L'ambiance</span><span lang="en">The vibe</span><span lang="it">L'atmosfera</span></span><em>→</em></a></li>
           <li style="--i:4"><a class="ml" href="#dates"><small>05</small><span>Dates</span><em>→</em></a></li>
           <li style="--i:5"><a class="ml" href="#musiciens"><small>06</small><span>Work with us</span><em>→</em></a></li>
+          <li style="--i:6"><a class="ml bandin" href="https://songs.livekaraokeparis.fr/band.html"><small><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></small><span><span lang="fr">Espace groupe</span><span lang="en">Band login</span><span lang="it">Area band</span></span><em>↗</em></a></li>
         </ul>
         <div class="menufoot">
           <div class="lang" role="group" aria-label="Langue / Language / Lingua"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="it">IT</button></div>
@@ -977,6 +979,7 @@ form .btn.sub:disabled{cursor:default}
       <a href="#dates">Dates</a>
       <a href="#musiciens">Work with us</a>
       <a href="https://songs.livekaraokeparis.fr" target="_blank" rel="noopener"><span lang="fr">Liste des chansons</span><span lang="en">Song list</span><span lang="it">Lista delle canzoni</span></a>
+      <a href="https://songs.livekaraokeparis.fr/band.html"><span lang="fr">Espace groupe</span><span lang="en">Band login</span><span lang="it">Area band</span></a>
     </nav>
     <p class="fcopy">© 2026 Live Karaoke Paris</p>
   </footer>
