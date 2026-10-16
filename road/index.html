@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Live Karaoke Paris · On the road</title>
+<meta name="description" content="Le premier Live Karaoke de Paris, on the road : choisis ta chanson et chante avec nous dans la rue.">
+<meta name="theme-color" content="#141a33">
+<link rel="icon" href="../favicon-32.png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600;700&family=Montserrat:wght@500;600;700&display=swap">
+<style>
+/* Layout: one centred column on a dark night backdrop: logo, a short line, two big buttons (song list, support us), a small link to the main site. */
+:root{--night:#141a33;--deep:#0e1328;--ink:#f3f0fb;--muted:#a6a9c8;--lilac:#c4b5fd;--violet:#a78bfa;--spot:#ffbf73;--line:rgba(243,240,251,.14);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--night)}
+body{min-height:100svh;color:var(--ink);font-family:Montserrat,system-ui,sans-serif;display:flex;align-items:center;justify-content:center;padding:calc(24px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));
+  background:radial-gradient(80% 55% at 85% 0%,rgba(124,92,230,.38),transparent 65%),radial-gradient(60% 45% at 0% 100%,rgba(255,191,115,.12),transparent 70%),var(--night)}
+main{width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;gap:22px;text-align:center}
+.logo{width:min(260px,72vw);height:auto;display:block;filter:drop-shadow(0 10px 30px rgba(167,139,250,.35))}
+p.lead{margin:0;color:var(--muted);font-size:15px;line-height:1.5;max-width:30ch}
+p.lead b{color:var(--ink)}
+.btns{width:100%;display:flex;flex-direction:column;gap:14px;margin-top:4px}
+a.b{display:flex;align-items:center;gap:14px;width:100%;min-height:68px;padding:12px 18px;border-radius:20px;text-decoration:none;color:var(--ink);font-family:"Josefin Sans",system-ui,sans-serif;font-weight:700;font-size:20px;letter-spacing:.01em;border:1.5px solid var(--line);background:rgba(255,255,255,.05);box-shadow:0 14px 34px -22px rgba(0,0,0,.8);transition:transform .2s ease,border-color .2s ease,background .2s ease}
+a.b:active{transform:scale(.98)}
+a.b:hover,a.b:focus-visible{border-color:var(--lilac)}
+a.b .e{flex:none;width:42px;height:42px;border-radius:14px;display:grid;place-items:center;font-size:22px;background:rgba(196,181,253,.16)}
+a.b .t{flex:1;text-align:left;display:flex;flex-direction:column;gap:3px;padding-top:3px}
+a.b small{font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:12.5px;color:var(--muted);letter-spacing:0}
+a.b .a{flex:none;color:var(--muted);font-size:18px}
+a.b.love{background:linear-gradient(135deg,#ffbf73,#ff9f5a);border-color:transparent;color:#1a1408}
+a.b.love .e{background:rgba(26,20,8,.12)}
+a.b.love small,a.b.love .a{color:rgba(26,20,8,.7)}
+.road{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:-4px}
+.tag{font-family:"Josefin Sans",system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#1a1408;background:var(--spot);padding:7px 12px 5px;border-radius:999px;transform:rotate(-3deg);box-shadow:0 8px 20px -10px rgba(255,191,115,.8)}
+h1{margin:0;font-family:"Josefin Sans",system-ui,sans-serif;font-weight:700;font-size:clamp(26px,7.4vw,34px);line-height:1.12;text-wrap:balance}
+h1 em{font-style:normal;color:var(--spot)}
+.site{color:var(--muted);font-size:13px;font-weight:600;text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.lang{display:flex;gap:6px}
+.lang button{border:1px solid var(--line);background:none;color:var(--muted);border-radius:999px;padding:6px 11px;font:600 12px Montserrat,system-ui,sans-serif;cursor:pointer}
+.lang button[aria-pressed="true"]{color:var(--ink);border-color:var(--lilac)}
+[data-l]:not(.on){display:none}
+</style>
+</head>
+<body>
+<main>
+  <img class="logo" src="../logo.png" alt="Live Karaoke Paris">
+  <div class="road"><span class="tag">On the road</span>
+  <h1><span data-l="fr">Le premier Live Karaoke de Paris… <em>dans la rue !</em></span><span data-l="en">Paris's first Live Karaoke… <em>on the road!</em></span><span data-l="it">Il primo Live Karaoke di Parigi… <em>on the road!</em></span></h1></div>
+  <p class="lead"><span data-l="fr">De vrais musiciens, ici, maintenant. <b>Choisis ta chanson</b>, prends le micro et chante avec nous. Si ça te plaît, soutiens les musiciens !</span><span data-l="en">Real musicians, right here, right now. <b>Pick your song</b>, grab the mic and sing with us. If you enjoy it, support the musicians!</span><span data-l="it">Musicisti veri, qui e adesso. <b>Scegli la tua canzone</b>, prendi il microfono e canta con noi. Se ti piace, sostieni i musicisti!</span></p>
+  <div class="btns">
+    <a class="b" href="https://songs.livekaraokeparis.fr"><span class="e" aria-hidden="true">🎤</span><span class="t"><span data-l="fr">Liste des chansons</span><span data-l="en">Song list</span><span data-l="it">Lista delle canzoni</span><small><span data-l="fr">Plus de 200 titres</span><span data-l="en">Over 200 songs</span><span data-l="it">Più di 200 brani</span></small></span><span class="a" aria-hidden="true">→</span></a>
+    <a class="b love" id="pay" href="https://www.paypal.com/qrcodes/p2pqrc/WFQHZ7L7LNBNN" target="_blank" rel="noopener"><span class="e" aria-hidden="true">🫶</span><span class="t"><span data-l="fr">Soutiens-nous</span><span data-l="en">Support us</span><span data-l="it">Sostienici</span><small><span data-l="fr">Un petit don via PayPal, merci !</span><span data-l="en">A small tip via PayPal, thank you!</span><span data-l="it">Una piccola offerta con PayPal, grazie!</span></small></span><span class="a" aria-hidden="true">↗</span></a>
+  </div>
+  <a class="site" href="https://livekaraokeparis.fr/"><span data-l="fr">Notre site · livekaraokeparis.fr</span><span data-l="en">Our website · livekaraokeparis.fr</span><span data-l="it">Il nostro sito · livekaraokeparis.fr</span></a>
+  <div class="lang" role="group" aria-label="Langue / Language / Lingua"><button type="button" data-set="fr">FR</button><button type="button" data-set="en">EN</button><button type="button" data-set="it">IT</button></div>
+</main>
+<script>
+(function(){
+  var nav=((navigator.languages&&navigator.languages[0])||navigator.language||"fr").toLowerCase();
+  var l=nav.startsWith("fr")?"fr":nav.startsWith("it")?"it":"en";
+  try{var s=localStorage.getItem("lkp-lang");if(s==="fr"||s==="en"||s==="it")l=s}catch(e){}
+  function set(x){l=x;document.documentElement.lang=x;document.querySelectorAll("[data-l]").forEach(function(e){e.classList.toggle("on",e.dataset.l===x)});document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.set===x)});try{localStorage.setItem("lkp-lang",x)}catch(e){}}
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){set(b.dataset.set)})});
+  set(l);
+})();
+</script>
+</body>
+</html>
