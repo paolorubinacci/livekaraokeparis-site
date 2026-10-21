@@ -790,7 +790,7 @@ form .btn.sub:disabled{cursor:default}
         <span class="cta-sub"><span lang="fr">Bars · Soirées étudiantes · Événements privés &amp; corporate</span><span lang="en">Bars · Student parties · Private &amp; corporate events</span><span lang="it">Bar · Feste studentesche · Eventi privati e aziendali</span></span>
       </div>
       <div class="facts">
-        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b>200+</b><span lang="fr">chansons</span><span lang="en">songs</span><span lang="it">canzoni</span></p><div class="more" aria-hidden="true"><span lang="fr">Pop · Disco 80s · Rock · Soul · Latino · Disney</span><span lang="en">Pop · 80s disco · Rock · Soul · Latin · Disney</span><span lang="it">Pop · Disco anni '80 · Rock · Soul · Latino · Disney</span></div></div>
+        <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></i><p><b class="songcount">250+</b><span lang="fr">chansons</span><span lang="en">songs</span><span lang="it">canzoni</span></p><div class="more" aria-hidden="true"><span lang="fr">Pop · Disco 80s · Rock · Soul · Latino · Disney</span><span lang="en">Pop · 80s disco · Rock · Soul · Latin · Disney</span><span lang="it">Pop · Disco anni '80 · Rock · Soul · Latino · Disney</span></div></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></i><p><b>5</b><span lang="fr">langues</span><span lang="en">languages</span><span lang="it">lingue</span></p><div class="more" aria-hidden="true"><span lang="fr">Anglais · Français · Espagnol · Italien · Arabe</span><span lang="en">English · Français · Español · Italiano · العربية</span><span lang="it">English · Français · Español · Italiano · العربية</span></div></div>
         <div class="fact"><i aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></i><p><b>100%</b><span lang="fr">live</span><span lang="en">live</span><span lang="it">live</span></p><div class="more" aria-hidden="true"><span lang="fr">Claviers · guitare · basse · batterie</span><span lang="en">Keys · guitar · bass · drums</span><span lang="it">Tastiere · chitarra · basso · batteria</span></div></div>
         <div class="fact k"><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></svg></i><p><b><span lang="fr">Clé en main</span><span lang="en">Turnkey</span><span lang="it">Chiavi in mano</span></b><span lang="fr">groupe, chansons et animation</span><span lang="en">band, songs and host</span><span lang="it">band, canzoni e presentatore</span></p><div class="more" aria-hidden="true"><span lang="fr">On adapte le format à votre lieu</span><span lang="en">We adapt the format to your venue</span><span lang="it">Adattiamo il format al tuo locale</span></div></div>
@@ -853,7 +853,7 @@ form .btn.sub:disabled{cursor:default}
 
   <section id="ambiance">
     <span class="eyebrow"><span lang="fr">L'ambiance</span><span lang="en">The vibe</span><span lang="it">L'atmosfera</span></span>
-    <h2><span lang="fr">Une soirée Live Karaoke, en vrai</span><span lang="en">A Live Karaoke night, for real</span><span lang="it">Una vera serata di Live Karaoke</span></h2>
+    <h2><span lang="fr">Une soirée Live Karaoke, en vrai</span><span lang="en">A Live Karaoke night, for real</span><span lang="it">Una serata Live Karaoke, per davvero</span></h2>
     <div class="reelwrap">
       <div class="reel" id="reel" tabindex="0" aria-label="Vidéos / Videos">
       <figure><video src="clip1.mp4" poster="clip1.jpg" muted loop playsinline preload="none" aria-hidden="true"></video><button class="snd" type="button" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path class="w" d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/><path class="x" d="m22 9-6 6M16 9l6 6"/></svg><span class="t"></span></button></figure>
@@ -1012,13 +1012,14 @@ document.querySelectorAll("video").forEach(v=>{ v.disableRemotePlayback=true; v.
 /* public contact address: leave empty until hello@livekaraokeparis.fr exists; when set, the form offers a "send by e-mail" button */
 const CONTACT_EMAIL = "";
 const BAR_INSTAGRAM = "https://www.instagram.com/roadhouse_paris/";
-const DATES = [
-  {d:"2026-10-07", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"},
-  {d:"2026-10-14", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"},
-  {d:"2026-10-21", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"},
-  {d:"2026-10-28", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"},
-  {d:"2026-11-04", venue:"Roadhouse", area:"Saint-Michel · Paris 5e"}
-];
+/* dates: every Wednesday at the Roadhouse, generated automatically for the next 5 weeks (always at least 4 dates ahead).
+   SKIP = Wednesdays with no show ("YYYY-MM-DD"); EXTRA = one-off dates or other venues. */
+const SKIP = [];
+const EXTRA = [];
+const DATES = (()=>{ const out=[], d=new Date(); d.setHours(12,0,0,0); d.setDate(d.getDate()+((3-d.getDay()+7)%7));
+  const iso=x=>x.getFullYear()+"-"+String(x.getMonth()+1).padStart(2,"0")+"-"+String(x.getDate()).padStart(2,"0");
+  for(let k=0;k<12&&out.length<5;k++){ const id=iso(d); if(!SKIP.includes(id)) out.push({d:id, venue:"Roadhouse", area:"Saint-Michel · Paris 5e"}); d.setDate(d.getDate()+7); }
+  return out.concat(EXTRA).sort((a,b)=>a.d<b.d?-1:1); })();
 const SONGS = [["Dancing Queen","EN"],["Alors On Danse","FR"],["Billie Jean","EN"],["Despacito","ES"],["Sweet Caroline","EN"],["Nel Blu Dipinto Di Blu (Volare)","IT"],["Let It Be","EN"],["Let It Go","DISNEY"],["I Will Survive","EN"],["Les Champs-Élysées","FR"],["Rolling In The Deep","EN"],["Danza Kuduro","ES"],["Wonderwall","EN"],["Sarà Perché Ti Amo","IT"],["Stand By Me","EN"],["Hakuna Matata","DISNEY"],["Twist And Shout","EN"],["Non, Je Ne Regrette Rien","FR"],["Viva La Vida","EN"],["Waka Waka","EN"],["Hit The Road Jack","EN"],["Bella Ciao","IT"],["Mamma Mia","EN"],["A Whole New World","DISNEY"]];
 
 let lang = "fr";
@@ -1053,6 +1054,11 @@ if("IntersectionObserver" in window){ const tk=track.closest(".ticker"); new Int
     "image":"https://livekaraokeparis.fr/og-image.jpg","url":"https://livekaraokeparis.fr/#dates"}));
   if(ev.length){ const s=document.createElement("script"); s.type="application/ld+json"; s.textContent=JSON.stringify(ev); document.head.appendChild(s); }
 }catch(e){} })();
+
+/* song count: read the live song list and show it rounded down to the nearest 50 (250+, 300+…) */
+(function(){ try{ fetch("https://songs.livekaraokeparis.fr/index.html",{cache:"no-store"}).then(r=>r.ok?r.text():"").then(t=>{
+  const n=(t.match(/^\["/gm)||[]).length; if(n<100) return; const r=Math.floor(n/50)*50;
+  document.querySelectorAll(".songcount").forEach(e=>e.textContent=r+"+"); document.querySelectorAll(".songnum").forEach(e=>e.textContent=r); }).catch(()=>{}); }catch(e){} })();
 
 /* dates */
 function renderDates(){

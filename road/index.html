@@ -50,7 +50,7 @@ h1 em{font-style:normal;color:var(--spot)}
   <h1><span data-l="fr">Le premier karaoké live de Paris… <em>on the road !</em></span><span data-l="en">Paris's first Live Karaoke… <em>on the road!</em></span><span data-l="it">Il primo Live Karaoke di Parigi… <em>on the road!</em></span></h1></div>
   <p class="lead"><span data-l="fr">De vrais musiciens, ici, maintenant. <b>Choisis ta chanson</b>, prends le micro et chante avec nous. Si ça te plaît, soutiens les musiciens !</span><span data-l="en">Real musicians, right here, right now. <b>Pick your song</b>, grab the mic and sing with us. If you enjoy it, support the musicians!</span><span data-l="it">Musicisti veri, qui e adesso. <b>Scegli la tua canzone</b>, prendi il microfono e canta con noi. Se ti piace, sostieni i musicisti!</span></p>
   <div class="btns">
-    <a class="b" href="https://songs.livekaraokeparis.fr"><span class="e" aria-hidden="true">🎤</span><span class="t"><span data-l="fr">Liste des chansons</span><span data-l="en">Song list</span><span data-l="it">Lista delle canzoni</span><small><span data-l="fr">Plus de 200 titres</span><span data-l="en">Over 200 songs</span><span data-l="it">Più di 200 brani</span></small></span><span class="a" aria-hidden="true">→</span></a>
+    <a class="b" href="https://songs.livekaraokeparis.fr"><span class="e" aria-hidden="true">🎤</span><span class="t"><span data-l="fr">Liste des chansons</span><span data-l="en">Song list</span><span data-l="it">Lista delle canzoni</span><small><span data-l="fr">Plus de <span class="songnum">250</span> titres</span><span data-l="en">Over <span class="songnum">250</span> songs</span><span data-l="it">Più di <span class="songnum">250</span> brani</span></small></span><span class="a" aria-hidden="true">→</span></a>
     <a class="b love" id="pay" href="https://www.paypal.com/qrcodes/p2pqrc/WFQHZ7L7LNBNN" target="_blank" rel="noopener"><span class="e" aria-hidden="true">🫶</span><span class="t"><span data-l="fr">Soutiens-nous</span><span data-l="en">Support us</span><span data-l="it">Sostienici</span><small><span data-l="fr">Un petit don via PayPal, merci !</span><span data-l="en">A small tip via PayPal, thank you!</span><span data-l="it">Una piccola offerta con PayPal, grazie!</span></small></span><span class="a" aria-hidden="true">↗</span></a>
   </div>
   <a class="site" href="https://livekaraokeparis.fr/"><span data-l="fr">Notre site · livekaraokeparis.fr</span><span data-l="en">Our website · livekaraokeparis.fr</span><span data-l="it">Il nostro sito · livekaraokeparis.fr</span></a>
@@ -64,6 +64,9 @@ h1 em{font-style:normal;color:var(--spot)}
   function set(x){l=x;document.documentElement.lang=x;document.querySelectorAll("[data-l]").forEach(function(e){e.classList.toggle("on",e.dataset.l===x)});document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.set===x)});try{localStorage.setItem("lkp-lang",x)}catch(e){}}
   document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){set(b.dataset.set)})});
   set(l);
+  try{ fetch("https://songs.livekaraokeparis.fr/index.html",{cache:"no-store"}).then(function(r){return r.ok?r.text():""}).then(function(t){
+    var n=(t.match(/^\["/gm)||[]).length; if(n<100) return; var v=Math.floor(n/50)*50;
+    document.querySelectorAll(".songnum").forEach(function(e){e.textContent=v}); }).catch(function(){}); }catch(e){}
 })();
 </script>
 </body>
